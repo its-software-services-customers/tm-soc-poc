@@ -1,0 +1,259 @@
+version: '2'
+services:
+  promtail:
+    container_name: promtail
+    image: grafana/promtail:2.3.0
+    restart: unless-stopped
+    volumes:
+      - ${CONTAINERS_LOG_DIR}:/var/lib/docker/containers:ro
+      - ${BASEDIR}/00-configs/promtail-config.yaml:/etc/promtail/promtail-config.yaml
+      - ${WIP_DIR}/position:/tmp/position
+      - /var/log:/host/var/log:ro
+    command: -config.file=/etc/promtail/promtail-config.yaml -config.expand-env=true
+    environment:
+      - DUMMY=002
+      - WIP_DIR=${WIP_DIR}
+      - LOG_DIR=${LOG_DIR}      
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"  
+
+  loki:
+    container_name: loki
+    image: grafana/loki:2.3.0
+    user: root
+    restart: unless-stopped
+    volumes:
+      - ${BASEDIR}/00-configs/loki-config.yaml:/etc/loki/loki-config.yaml
+      - ${WIP_DIR}/loki/data:/loki
+    command: -config.file=/etc/loki/loki-config.yaml
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  grafana:
+    image: "grafana/grafana:8.2.2"
+    container_name: grafana
+    restart: unless-stopped
+    user: "0"
+    environment:
+      - GF_AUTH_DISABLE_LOGIN_FORM=false
+      - GF_AUTH_PROXY_ENABLED=true
+      - GF_SERVER_ROOT_URL=<<<change-this>>>
+      - GF_AUTH_OKTA_ENABLED=true
+      - GF_AUTH_OKTA_CLIENT_ID=${OIDC_CLIENT_ID}
+      - GF_AUTH_OKTA_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
+      - GF_AUTH_OKTA_ALLOW_SIGN_UP=true
+      - GF_AUTH_OKTA_SCOPES=openid profile email groups
+      - GF_AUTH_OKTA_AUTH_URL=https://dev-4641032.okta.com/oauth2/v1/authorize
+      - GF_AUTH_OKTA_TOKEN_URL=https://dev-4641032.okta.com/oauth2/v1/token
+      - GF_AUTH_OKTA_API_URL=https://dev-4641032.okta.com/oauth2/v1/userinfo
+      - GF_AUTH_OKTA_ROLE_ATTRIBUTE_PATH=to_string('Editor')
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+    volumes:
+    - ${BASEDIR}/00-configs/grafana-ds.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+    - ${BASEDIR}/01-dashboards/all.yaml:/etc/grafana/provisioning/dashboards/all.yaml
+    - ${BASEDIR}/01-dashboards/jsons:/var/lib/grafana/dashboards:ro
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.2.5
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ALLOW_ANONYMOUS_LOGIN: yes
+    volumes:
+      - ${WIP_DIR}/zookeeper/data:/var/lib/zookeeper/data
+      - ${WIP_DIR}/zookeeper/log:/var/lib/zookeeper/log
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"  
+
+  kafka:
+    image: confluentinc/cp-kafka:5.2.5
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    environment:
+      DUMMY: 001
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_OPTS: -javaagent:/kafka/etc/jmx_prometheus_javaagent.jar=8080:/kafka/etc/config.yml
+      JMX_PORT: 9998
+      KAFKA_JMX_OPTS: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost -Dcom.sun.management.jmxremote.rmi.port=9998
+    volumes:
+      - ${WIP_DIR}/kafka/data:/var/lib/kafka/data
+      - ${BASEDIR}/00-configs/kafka-exporter.yaml:/kafka/etc/config.yml
+      - ${BASEDIR}/00-configs/jmx_prometheus_javaagent-0.15.0.jar:/kafka/etc/jmx_prometheus_javaagent.jar
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"  
+
+  kafka-ui:    
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      # NOTE : Use kafka-ui in TLS mode, it will be easy for OAUTH2 redirect_url setup
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+      KAFKA_CLUSTERS_0_READONLY: "false"
+      AUTH_ENABLED: "true"
+      SECURITY_BASIC_ENABLED: "true"
+      SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OKTA_ISSUER_URI: https://dev-4641032.okta.com/oauth2/default
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OKTA_CLIENTID: ${OIDC_CLIENT_ID}
+      SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OKTA_CLIENTSECRET: ${OIDC_CLIENT_SECRET}
+      SERVER_SSL_KEY_STORE_TYPE: PKCS12
+      SERVER_SSL_KEY_STORE: /opt/cert/my-server-keystore.p12
+      SERVER_SSL_KEY_STORE_PASSWORD: ${KEYSTORE_PASSWD}
+      SERVER_SSL_KEY_ALIAS: tls
+      SERVER_SSL_ENABLED: true
+      DUMMY: "001"
+    volumes:
+      - ${WIP_DIR}/nginx-certs:/opt/cert # Use the same cert as nginx for simplicity
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  node-exporter:
+    image: prom/node-exporter:v1.2.2
+    container_name: node-exporter
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - /:/rootfs:ro,rslave
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc' 
+      - '--path.sysfs=/host/sys'
+      - '--path.rootfs=/rootfs'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"      
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  cadvisor:
+    image: 'google/cadvisor:latest'
+    container_name: cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk:/dev/disk/:ro
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  prometheus:
+    environment:
+      - DUMMY=006
+    command:
+      - --config.file=/etc/prometheus/prometheus.yaml
+      - --storage.tsdb.path=/prometheus
+      - --web.enable-lifecycle
+      - --enable-feature=expand-external-labels
+    container_name: prometheus
+    image: prom/prometheus:v2.30.3
+    user: root
+    restart: always
+    volumes:
+      - ${BASEDIR}/00-configs/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+      - ${WIP_DIR}/prometheus:/prometheus
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"  
+
+  nginx: 
+    image: nginx:1.21.3
+    container_name: nginx
+    volumes:
+      - ${BASEDIR}/00-configs/nginx.conf:/etc/nginx/nginx.conf
+      - ${WIP_DIR}/nginx-certs:/cert
+    ports:
+      - 443:443
+      - 3000:3000
+    depends_on:
+      - grafana
+      - kafka-ui
+      - nifi
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  nifi:
+    image: apache/nifi:${NIFI_VERSION} # DO NOT hardcode the image tag because the deploy-nifi-pg.pl need to change accordingly
+    user: root
+    container_name: nifi
+    environment:
+      NIFI_WEB_HTTP_PORT: 8080
+      NIFI_SENSITIVE_PROPS_KEY: 6RfP0DqmDtwsfr343dsgcRIm4HPHOQ4q #DO NOT REMOVE OR CHANGE THIS!!!
+      DUMMY: "001"
+    ports:
+      - "${HOST_ALLOW}8080:8080" # On production must not expose this port, also need some kinds of authentication
+    depends_on:
+      - nifi-registry      
+    volumes:
+      - ${WIP_DIR}/nginx:/opt/cert # Use the same cert as nginx for simplicity 
+      - ${WIP_DIR}/nifi/state:/opt/nifi/nifi-current/state
+      - ${WIP_DIR}/nifi/database_repository:/opt/nifi/nifi-current/database_repository
+      - ${WIP_DIR}/nifi/flowfile_repository:/opt/nifi/nifi-current/flowfile_repository
+      - ${WIP_DIR}/nifi/content_repository:/opt/nifi/nifi-current/content_repository
+      - ${WIP_DIR}/nifi/provenance_repository:/opt/nifi/nifi-current/provenance_repository
+      - ${WIP_DIR}/nifi/logs:/opt/nifi/nifi-current/logs
+      - ${WIP_DIR}/nifi/flow:/opt/nifi/nifi-current/flow
+      - ${WIP_DIR}/nifi/extensions:/opt/nifi/nifi-current/extensions
+      #- /tmp/nifi-config/nifi.properties:/opt/nifi/nifi-current/conf/nifi.properties
+      #- /tmp/nifi-config/flow.xml.gz:/opt/nifi/nifi-current/conf/flow.xml.gz
+      - /tmp/nifi-output:/tmp/nifi-output
+      - /tmp/nifi-input:/tmp/nifi-input
+      - ${PATH_CERT}:/kafka/certs:ro
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  nifi-registry:
+    image: apache/nifi-registry:${NIFI_VERSION}
+    user: root
+    container_name: nifi-registry
+    environment:
+      NIFI_REGISTRY_WEB_HTTP_PORT: 18080
+      LOG_LEVEL: INFO
+      NIFI_REGISTRY_DB_DIR: /opt/nifi-registry/database
+      NIFI_REGISTRY_FLOW_PROVIDER: file
+      NIFI_REGISTRY_FLOW_STORAGE_DIR: /opt/nifi-registry/flow_storage
+    ports:
+      - '127.0.0.1:18080:18080' # Must only allow for localhost for security reason
+    volumes:
+      - ${WIP_DIR}/nifi-registry/database:/opt/nifi-registry/nifi-registry-current/database
+      - ${WIP_DIR}/nifi-registry/flow_storage:/opt/nifi-registry/flow_storage
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
