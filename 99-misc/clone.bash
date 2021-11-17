@@ -16,4 +16,4 @@ sudo docker run \
 #-e IASC_VAULT_SECRETS=${VAULT_FILE} \
 #-v ${HOME}/.config/gcloud:/root/.config/gcloud \
 
-#sudo chown -R administrator:administrator ${OUTPUT_FOLDER}
+sudo chown -R ${USER}:${USER} ${OUTPUT_FOLDER}
