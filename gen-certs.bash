@@ -29,8 +29,8 @@ prompt = no
 C = TH
 ST = Bangkok
 L = Bangkok
-O = ICT
-OU = MOPH
+O = THAI-MILITARY
+OU = ARMY
 CN = ROOT
 
 [v3_req]
@@ -39,7 +39,7 @@ extendedKeyUsage = serverAuth
 subjectAltName = @san_names
 
 [san_names]
-DNS.1 = root.moph.cluster.local
+DNS.1 = root.tm.cluster.local
 EOF
 
 openssl genrsa -out ${CERT_DIR}/${ROOT_KEY} 2048
@@ -60,9 +60,9 @@ prompt = no
 C = TH
 ST = Bangkok
 L = Bangkok
-O = ICT
-OU = MOPH
-CN = GATEWAY
+O = THAI-MILITARY
+OU = ARMY
+CN = POC
 
 [v3_req]
 keyUsage = keyEncipherment, dataEncipherment
@@ -70,7 +70,7 @@ extendedKeyUsage = serverAuth
 subjectAltName = @san_names
 
 [san_names]
-DNS.1 = his-gw.moph.cluster.local
+DNS.1 = army.tm.cluster.local
 EOF
 
 # Generate key
