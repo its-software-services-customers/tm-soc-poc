@@ -41,7 +41,7 @@ services:
     environment:
       - GF_AUTH_DISABLE_LOGIN_FORM=false
       - GF_AUTH_PROXY_ENABLED=true
-      - GF_SERVER_ROOT_URL=<<<change-this>>>
+      - GF_SERVER_ROOT_URL=https://grafana.tm-soc-np.its-software-services.com
       - GF_AUTH_OKTA_ENABLED=true
       - GF_AUTH_OKTA_CLIENT_ID=${OIDC_CLIENT_ID}
       - GF_AUTH_OKTA_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
