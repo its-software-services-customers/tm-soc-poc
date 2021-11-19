@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JDK=java-1.8.0-openjdk
+JDK=openjdk-8-jre-headless
 DOCKER_COMPOSE_VERSION=v2.0.1
 DOCKER_COMPOSE_PATH=/usr/bin/docker-compose
 

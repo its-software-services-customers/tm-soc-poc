@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NIFI_VERSION=1.14.0
-CFG_FILE=${HOME}/configs/his.conf
+CFG_FILE=${HOME}/configs/app.conf
 chmod 600 ${CFG_FILE}
 
 if [ -f "${CFG_FILE}" ]; then
