@@ -59,13 +59,13 @@ then
     ./gen-certs.bash ${WIP_DIR}/nginx-certs ${KEYSTORE_PASSWD} | logger -s
 
     HOST_ALLOW=""
-    if [[ ${EVER_ENVIRONMENT} =~ ^$ ]]; 
+    if [[ ${ITS_ENVIRONMENT} =~ ^$ ]]; 
     then
         # This is in production environment only, we will not expose this port
         HOST_ALLOW="127.0.0.1:" #DO NOT remove the ':' from HOST_ALLOW
     else
         echo "ATTENTION!!! - This expose NIFI to the world!!! (be sure setting this on Non-Production only)" | logger -s
-        echo "The EVER_ENVIRONMENT environment variable is [${EVER_ENVIRONMENT}]" | logger -s
+        echo "The ITS_ENVIRONMENT environment variable is [${ITS_ENVIRONMENT}]" | logger -s
     fi
 
     # Generate .env file
