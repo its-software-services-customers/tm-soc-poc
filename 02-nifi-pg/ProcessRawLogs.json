@@ -1,11 +1,11 @@
 {
     "flowContents": {
-        "identifier": "2c034bd9-7b8a-3c04-8d75-be66433f845c",
+        "identifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1",
         "name": "ProcessRawLogs",
         "comments": "",
         "position": {
-            "x": 520.0,
-            "y": 56.0
+            "x": 376.0,
+            "y": 0.0
         },
         "processGroups": [],
         "remoteProcessGroups": [],
@@ -214,7 +214,7 @@
                 "autoTerminatedRelationships": [],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "2c034bd9-7b8a-3c04-8d75-be66433f845c"
+                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
             },
             {
                 "identifier": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
@@ -234,7 +234,7 @@
                 "properties": {
                     "compression.type": "none",
                     "attribute-name-regex": null,
-                    "record-writer": "a37dfbff-eff2-38bd-90de-ae004f17f350",
+                    "record-writer": "9de2fea4-dc8e-340e-adcb-31a31bdb0285",
                     "bootstrap.servers": "kafka:29092",
                     "sasl.kerberos.principal": null,
                     "sasl.kerberos.service.name": null,
@@ -242,7 +242,7 @@
                     "partition": null,
                     "sasl.mechanism": "PLAIN",
                     "max.block.ms": "5 sec",
-                    "record-reader": "7d3f5c10-b101-3c35-a617-15e1ec7e94b1",
+                    "record-reader": "b92e41de-fa76-3296-b453-52d2a7ba090f",
                     "message-header-encoding": "UTF-8",
                     "transactional-id-prefix": null,
                     "ack.wait.time": "5 secs",
@@ -443,7 +443,7 @@
                 ],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "2c034bd9-7b8a-3c04-8d75-be66433f845c"
+                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
             }
         ],
         "inputPorts": [],
@@ -455,14 +455,14 @@
                 "source": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "2c034bd9-7b8a-3c04-8d75-be66433f845c",
+                    "groupId": "ec187a93-201f-3c3d-b27b-7da68b60b0e1",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
                 "destination": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "2c034bd9-7b8a-3c04-8d75-be66433f845c",
+                    "groupId": "ec187a93-201f-3c3d-b27b-7da68b60b0e1",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
@@ -489,7 +489,7 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "2c034bd9-7b8a-3c04-8d75-be66433f845c"
+                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
             },
             {
                 "identifier": "333758af-2f63-3587-813f-8f555c089a34",
@@ -497,14 +497,14 @@
                 "source": {
                     "id": "4f8b14a5-177a-3f7e-b039-c93774455636",
                     "type": "PROCESSOR",
-                    "groupId": "2c034bd9-7b8a-3c04-8d75-be66433f845c",
+                    "groupId": "ec187a93-201f-3c3d-b27b-7da68b60b0e1",
                     "name": "KafkaConsumeLogTopics",
                     "comments": ""
                 },
                 "destination": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "2c034bd9-7b8a-3c04-8d75-be66433f845c",
+                    "groupId": "ec187a93-201f-3c3d-b27b-7da68b60b0e1",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
@@ -522,12 +522,254 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "2c034bd9-7b8a-3c04-8d75-be66433f845c"
+                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
             }
         ],
         "labels": [],
         "funnels": [],
-        "controllerServices": [],
+        "controllerServices": [
+            {
+                "identifier": "b92e41de-fa76-3296-b453-52d2a7ba090f",
+                "name": "JsonTreeReader",
+                "type": "org.apache.nifi.json.JsonTreeReader",
+                "bundle": {
+                    "group": "org.apache.nifi",
+                    "artifact": "nifi-record-serialization-services-nar",
+                    "version": "1.14.0"
+                },
+                "controllerServiceApis": [
+                    {
+                        "type": "org.apache.nifi.serialization.RecordReaderFactory",
+                        "bundle": {
+                            "group": "org.apache.nifi",
+                            "artifact": "nifi-standard-services-api-nar",
+                            "version": "1.14.0"
+                        }
+                    }
+                ],
+                "properties": {
+                    "Timestamp Format": null,
+                    "schema-inference-cache": null,
+                    "Date Format": null,
+                    "schema-branch": null,
+                    "schema-name": "${schema.name}",
+                    "schema-registry": null,
+                    "Time Format": null,
+                    "schema-access-strategy": "infer-schema",
+                    "schema-version": null,
+                    "schema-text": "${avro.schema}"
+                },
+                "propertyDescriptors": {
+                    "Timestamp Format": {
+                        "name": "Timestamp Format",
+                        "displayName": "Timestamp Format",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-inference-cache": {
+                        "name": "schema-inference-cache",
+                        "displayName": "Schema Inference Cache",
+                        "identifiesControllerService": true,
+                        "sensitive": false
+                    },
+                    "Date Format": {
+                        "name": "Date Format",
+                        "displayName": "Date Format",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-branch": {
+                        "name": "schema-branch",
+                        "displayName": "Schema Branch",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-name": {
+                        "name": "schema-name",
+                        "displayName": "Schema Name",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-registry": {
+                        "name": "schema-registry",
+                        "displayName": "Schema Registry",
+                        "identifiesControllerService": true,
+                        "sensitive": false
+                    },
+                    "Time Format": {
+                        "name": "Time Format",
+                        "displayName": "Time Format",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-access-strategy": {
+                        "name": "schema-access-strategy",
+                        "displayName": "Schema Access Strategy",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-version": {
+                        "name": "schema-version",
+                        "displayName": "Schema Version",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-text": {
+                        "name": "schema-text",
+                        "displayName": "Schema Text",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    }
+                },
+                "componentType": "CONTROLLER_SERVICE",
+                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
+            },
+            {
+                "identifier": "9de2fea4-dc8e-340e-adcb-31a31bdb0285",
+                "name": "JsonRecordSetWriter",
+                "type": "org.apache.nifi.json.JsonRecordSetWriter",
+                "bundle": {
+                    "group": "org.apache.nifi",
+                    "artifact": "nifi-record-serialization-services-nar",
+                    "version": "1.14.0"
+                },
+                "controllerServiceApis": [
+                    {
+                        "type": "org.apache.nifi.serialization.RecordSetWriterFactory",
+                        "bundle": {
+                            "group": "org.apache.nifi",
+                            "artifact": "nifi-standard-services-api-nar",
+                            "version": "1.14.0"
+                        }
+                    }
+                ],
+                "properties": {
+                    "schema-branch": null,
+                    "compression-level": "1",
+                    "schema-cache": null,
+                    "Timestamp Format": null,
+                    "Date Format": null,
+                    "Pretty Print JSON": "false",
+                    "compression-format": "none",
+                    "Schema Write Strategy": "no-schema",
+                    "suppress-nulls": "never-suppress",
+                    "output-grouping": "output-array",
+                    "schema-name": "${schema.name}",
+                    "schema-registry": null,
+                    "Time Format": null,
+                    "schema-access-strategy": "inherit-record-schema",
+                    "schema-protocol-version": "1",
+                    "schema-version": null,
+                    "schema-text": "${avro.schema}"
+                },
+                "propertyDescriptors": {
+                    "schema-branch": {
+                        "name": "schema-branch",
+                        "displayName": "Schema Branch",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "compression-level": {
+                        "name": "compression-level",
+                        "displayName": "Compression Level",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-cache": {
+                        "name": "schema-cache",
+                        "displayName": "Schema Cache",
+                        "identifiesControllerService": true,
+                        "sensitive": false
+                    },
+                    "Timestamp Format": {
+                        "name": "Timestamp Format",
+                        "displayName": "Timestamp Format",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Date Format": {
+                        "name": "Date Format",
+                        "displayName": "Date Format",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Pretty Print JSON": {
+                        "name": "Pretty Print JSON",
+                        "displayName": "Pretty Print JSON",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "compression-format": {
+                        "name": "compression-format",
+                        "displayName": "Compression Format",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Schema Write Strategy": {
+                        "name": "Schema Write Strategy",
+                        "displayName": "Schema Write Strategy",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "suppress-nulls": {
+                        "name": "suppress-nulls",
+                        "displayName": "Suppress Null Values",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "output-grouping": {
+                        "name": "output-grouping",
+                        "displayName": "Output Grouping",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-name": {
+                        "name": "schema-name",
+                        "displayName": "Schema Name",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-registry": {
+                        "name": "schema-registry",
+                        "displayName": "Schema Registry",
+                        "identifiesControllerService": true,
+                        "sensitive": false
+                    },
+                    "Time Format": {
+                        "name": "Time Format",
+                        "displayName": "Time Format",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-access-strategy": {
+                        "name": "schema-access-strategy",
+                        "displayName": "Schema Access Strategy",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-protocol-version": {
+                        "name": "schema-protocol-version",
+                        "displayName": "Schema Protocol Version",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-version": {
+                        "name": "schema-version",
+                        "displayName": "Schema Version",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "schema-text": {
+                        "name": "schema-text",
+                        "displayName": "Schema Text",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    }
+                },
+                "componentType": "CONTROLLER_SERVICE",
+                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
+            }
+        ],
         "variables": {},
         "parameterContextName": "ParameterContext",
         "defaultFlowFileExpiration": "0 sec",
@@ -537,16 +779,7 @@
         "flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
         "componentType": "PROCESS_GROUP"
     },
-    "externalControllerServices": {
-        "a37dfbff-eff2-38bd-90de-ae004f17f350": {
-            "identifier": "a37dfbff-eff2-38bd-90de-ae004f17f350",
-            "name": "JsonRecordSetWriter"
-        },
-        "7d3f5c10-b101-3c35-a617-15e1ec7e94b1": {
-            "identifier": "7d3f5c10-b101-3c35-a617-15e1ec7e94b1",
-            "name": "JsonTreeReader"
-        }
-    },
+    "externalControllerServices": {},
     "parameterContexts": {
         "ParameterContext": {
             "name": "ParameterContext",
