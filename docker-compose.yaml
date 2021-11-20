@@ -267,7 +267,7 @@ services:
     ports:
       - '514:514'
     volumes:
-      - ${BASEDIR}/00-configs/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ${BASEDIR}/00-configs/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ${BASEDIR}/00-configs/pipelines:/usr/share/logstash/pipeline:ro
     logging:
       driver: "json-file"
