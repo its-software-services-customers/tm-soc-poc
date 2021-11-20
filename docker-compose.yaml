@@ -263,12 +263,13 @@ services:
     container_name: logstash
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-      DUMMY: "009"
+      DUMMY: "010"
     ports:
       - '514:514'
     volumes:
       - ${BASEDIR}/00-configs/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ${BASEDIR}/00-configs/pipelines:/usr/share/logstash/pipeline:ro
+      - /tmp/logstash-input:/tmp/logstash-input
     logging:
       driver: "json-file"
       options: 
