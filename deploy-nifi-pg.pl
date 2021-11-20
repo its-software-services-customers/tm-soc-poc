@@ -4,25 +4,19 @@ use strict;
 use warnings;
 use JSON qw( decode_json );
 
-my $HOSPCODE = $ENV{'HOSPCODE'};
-my $KAFKA_BOOTSTRAP_SERVERS = $ENV{'KAFKA_BOOTSTRAP_SERVERS'};
-
 my $NIFI_VERSION = $ENV{NIFI_VERSION};
-my $FLOW_FILE = "02-nifi-pg/his-gw-moph.json";
+my $FLOW_FILE = "02-nifi-pg/ProcessRawLogs.json";
+my $REPORT_TASK_FILE = "02-nifi-pg/reporting-task.json";
 my $PROGRAM_BIN = "$ENV{HOME}/nifi-toolkit-$NIFI_VERSION/bin/cli.sh";
 my $NIFI_URL = 'http://localhost:8080';
 my $NIFI_URL_INT = 'http://nifi-registry:18080';
 my $REGISTRY_URL = 'http://localhost:18080';
-my $FLOW_NAME = 'his-gw';
+my $FLOW_NAME = 'log-processing-flow';
 my $BUCKET = 'local';
 my $REGISTRY_CLIENT = 'local';
-my $PG_NAME = 'Gateway2Moph';
+my $PG_NAME = 'ProcessRawLogs';
 my $CONTEXT_NAME = 'context';
 my $PG_SIGNATURE_FILE = "$ENV{HOME}/data/pg-signature.txt";
-
-my $PASSWORD_FILE = "$ENV{HOME}/certs/hospcode-${HOSPCODE}.user.pasword";
-my $KEYSTORE_FILE = "/kafka/certs/hospcode-${HOSPCODE}.user.keystore.jks";
-my $TRUSTSTORE_FILE = "/kafka/certs/hospcode-${HOSPCODE}.cluster-ca.truststore.jks";
 
 # It is good idea to setup NIFI toolkit here because NIFI version could be changed based on what we set in docker-compose.yaml
 setup_nifi_toolkit();
@@ -91,8 +85,29 @@ disable_svc_and_stop($pgId);
 setup_param_values($paramContextId);
 enable_svc_and_start($pgId);
 
+create_and_start_reporting_task();
+
 exit(0);
 # =====
+
+sub create_and_start_reporting_task
+{
+    my $task = 'PrometheusReportingTask';
+    print("### Creating Prometheus reporting task...\n");
+
+    my $cmd = "$PROGRAM_BIN nifi get-reporting-tasks -u $NIFI_URL | grep $task";
+    my $line = execute_cmd($cmd, 1);
+    if ($line eq '')
+    {
+        print("### Reporting task [$task] does not exist, so create one\n");
+
+        my $cmd1 = "$PROGRAM_BIN nifi create-reporting-task -u $NIFI_URL --input $REPORT_TASK_FILE";
+        my $out1 = execute_cmd($cmd1);
+    }
+
+    my $cmd2 = "$PROGRAM_BIN nifi start-reporting-tasks -u $NIFI_URL";
+    my $out2 = execute_cmd($cmd2, 1);    
+}
 
 sub wait_server_start
 {
@@ -213,23 +228,6 @@ sub setup_param_values
 
     my $cmd1 = "$commonPart VAR_KAFKA_PASSWORD --paramValue notused";
     my $out1 = execute_cmd($cmd1);
-
-    my $password = execute_cmd("cat $PASSWORD_FILE");
-
-    my $cmd2 = "$commonPart VAR_KEYSTORE_PASSWORD --paramValue $password";
-    my $out2 = execute_cmd($cmd2);
-
-    my $cmd3 = "$commonPart VAR_KAFKA_BOOTSTRAP --paramValue ${KAFKA_BOOTSTRAP_SERVERS}";
-    my $out3 = execute_cmd($cmd3);
-
-    my $cmd4 = "$commonPart VAR_KAFKA_KEYSTORE_FILE --paramValue ${KEYSTORE_FILE}";
-    my $out4 = execute_cmd($cmd4);
-
-    my $cmd5 = "$commonPart VAR_KAFKA_TRUSTSTORE_FILE --paramValue ${TRUSTSTORE_FILE}";
-    my $out5 = execute_cmd($cmd5);
-
-    my $cmd6 = "$commonPart VAR_KAFKA_TOPIC --paramValue hosp-$ENV{ZONE}-$ENV{PROVINCE}-$HOSPCODE";
-    my $out6 = execute_cmd($cmd6);
 }
 
 sub get_param_context

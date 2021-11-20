@@ -1,0 +1,15 @@
+{
+    "revision": {
+        "clientId": "30bdcf78-017d-1000-2397-207955a39d43",
+        "version": 0
+    },
+    "disconnectedNodeAcknowledged": false,
+    "component": {
+        "type": "org.apache.nifi.reporting.prometheus.PrometheusReportingTask",
+        "bundle": {
+            "group": "org.apache.nifi",
+            "artifact": "nifi-prometheus-nar",
+            "version": "1.14.0"
+        }
+    }
+}

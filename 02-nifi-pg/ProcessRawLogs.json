@@ -46,6 +46,7 @@
                     "topic": "^syslog$",
                     "separate-by-key": "false",
                     "message-header-encoding": "UTF-8",
+                    "sasl.password": "#{VAR_KAFKA_PASSWORD}",
                     "message-demarcator": null,
                     "key-attribute-encoding": "utf-8",
                     "auto.offset.reset": "latest"
@@ -256,7 +257,8 @@
                     "Failure Strategy": "Route to Failure",
                     "partitioner.class": "org.apache.kafka.clients.producer.internals.DefaultPartitioner",
                     "sasl.kerberos.keytab": null,
-                    "topic": "loki"
+                    "topic": "loki",
+                    "sasl.password": "#{VAR_KAFKA_PASSWORD}"
                 },
                 "propertyDescriptors": {
                     "compression.type": {
@@ -527,6 +529,7 @@
         "funnels": [],
         "controllerServices": [],
         "variables": {},
+        "parameterContextName": "ParameterContext",
         "defaultFlowFileExpiration": "0 sec",
         "defaultBackPressureObjectThreshold": 10000,
         "defaultBackPressureDataSizeThreshold": "1 GB",
@@ -544,6 +547,17 @@
             "name": "JsonTreeReader"
         }
     },
-    "parameterContexts": {},
+    "parameterContexts": {
+        "ParameterContext": {
+            "name": "ParameterContext",
+            "parameters": [
+                {
+                    "name": "VAR_KAFKA_PASSWORD",
+                    "description": "",
+                    "sensitive": true
+                }
+            ]
+        }
+    },
     "flowEncodingVersion": "1.0"
 }
