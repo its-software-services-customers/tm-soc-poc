@@ -260,7 +260,7 @@ services:
 
   logstash-kafka:
     image: docker.elastic.co/logstash/logstash:7.15.2
-    container_name: logstash
+    container_name: logstash-kafka
     user: root
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
