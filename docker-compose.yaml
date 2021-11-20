@@ -258,20 +258,20 @@ services:
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
-  logstash:
+  logstash-kafka:
     image: docker.elastic.co/logstash/logstash:7.15.2
     container_name: logstash
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
       DUMMY: "012"
     depends_on:
-      - kafka      
+      - kafka
     ports:
       - '5140:5140'
     volumes:
       - ${BASEDIR}/00-configs/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ${BASEDIR}/00-configs/pipelines:/usr/share/logstash/pipeline:ro
-      - /tmp/logstash-input:/tmp/logstash-input
+      - /var/log:/data
     logging:
       driver: "json-file"
       options: 
