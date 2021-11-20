@@ -257,3 +257,19 @@ services:
       driver: "json-file"
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.15.2
+    container_name: logstash
+    environment:
+      LOG_LEVEL: DEBUG
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    ports:
+      - '514:514'
+    volumes:
+      - ${BASEDIR}/00-configs/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ${BASEDIR}/00-configs/pipelines:/usr/share/logstash/pipeline:ro
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
