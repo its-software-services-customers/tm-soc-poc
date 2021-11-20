@@ -14,9 +14,10 @@ sudo sh get-docker.sh
 
 sudo apt install -y unzip
 sudo apt install -y ${JDK}
-sudo apt install -y cpan
+sudo apt-get install -y build-essential
 
-yes | sudo perl -MCPAN -e 'install JSON'
+sudo perl -MCPAN -e shell
+install JSON #Run this in the cpan shell
 
 # Docker Compose
 sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
