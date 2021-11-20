@@ -270,7 +270,7 @@ services:
     ports:
       - '5140:5140'
     volumes:
-      - ${BASEDIR}/00-configs/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ${BASEDIR}/00-configs/logstash-kafka.yml:/usr/share/logstash/config/logstash.yml:ro
       - ${BASEDIR}/00-configs/pipelines/for-kafka:/usr/share/logstash/pipeline:ro
       - /var/log:/data
     logging:
@@ -289,7 +289,7 @@ services:
     depends_on:
       - kafka
     volumes:
-      - ${BASEDIR}/00-configs/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ${BASEDIR}/00-configs/logstash-loki.yml:/usr/share/logstash/config/logstash.yml:ro
       - ${BASEDIR}/00-configs/pipelines/for-loki:/usr/share/logstash/pipeline:ro
     logging:
       driver: "json-file"
