@@ -263,7 +263,7 @@ services:
     container_name: logstash
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-      DUMMY: "002"
+      DUMMY: "003"
     ports:
       - '514:514'
     volumes:
