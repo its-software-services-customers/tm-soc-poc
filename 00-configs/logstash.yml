@@ -7,4 +7,4 @@ log.level: "debug"
 
 ## X-Pack security credentials
 #
-xpack.monitoring.enabled: true
+#xpack.monitoring.enabled: true
