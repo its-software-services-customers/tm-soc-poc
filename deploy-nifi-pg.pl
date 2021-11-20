@@ -15,7 +15,7 @@ my $FLOW_NAME = 'log-processing-flow';
 my $BUCKET = 'local';
 my $REGISTRY_CLIENT = 'local';
 my $PG_NAME = 'ProcessRawLogs';
-my $CONTEXT_NAME = 'context';
+my $CONTEXT_NAME = 'ParameterContext';
 my $PG_SIGNATURE_FILE = "$ENV{HOME}/data/pg-signature.txt";
 
 # It is good idea to setup NIFI toolkit here because NIFI version could be changed based on what we set in docker-compose.yaml
