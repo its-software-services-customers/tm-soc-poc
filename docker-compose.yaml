@@ -267,7 +267,7 @@ services:
     depends_on:
       - kafka      
     ports:
-      - '514:514'
+      - '5140:5140'
     volumes:
       - ${BASEDIR}/00-configs/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ${BASEDIR}/00-configs/pipelines:/usr/share/logstash/pipeline:ro
