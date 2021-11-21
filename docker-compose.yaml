@@ -21,7 +21,7 @@ services:
 
   loki:
     container_name: loki
-    image: grafana/loki:2.3.0
+    image: grafana/loki:2.4.1
     user: root
     restart: unless-stopped
     volumes:
