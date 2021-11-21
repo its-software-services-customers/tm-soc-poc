@@ -1,11 +1,11 @@
 {
     "flowContents": {
-        "identifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1",
+        "identifier": "b95101d5-0cf1-30dd-9b23-901908951f78",
         "name": "ProcessRawLogs",
         "comments": "",
         "position": {
-            "x": 376.0,
-            "y": 0.0
+            "x": 552.0,
+            "y": 16.0
         },
         "processGroups": [],
         "remoteProcessGroups": [],
@@ -49,7 +49,7 @@
                     "sasl.password": "#{VAR_KAFKA_PASSWORD}",
                     "message-demarcator": null,
                     "key-attribute-encoding": "utf-8",
-                    "auto.offset.reset": "latest"
+                    "auto.offset.reset": "earliest"
                 },
                 "propertyDescriptors": {
                     "header-name-regex": {
@@ -214,7 +214,7 @@
                 "autoTerminatedRelationships": [],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
+                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
             },
             {
                 "identifier": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
@@ -247,7 +247,7 @@
                     "transactional-id-prefix": null,
                     "ack.wait.time": "5 secs",
                     "sasl.username": "notused",
-                    "use-transactions": "true",
+                    "use-transactions": "false",
                     "acks": "all",
                     "security.protocol": "PLAINTEXT",
                     "ssl.context.service": null,
@@ -434,16 +434,16 @@
                 "schedulingStrategy": "TIMER_DRIVEN",
                 "executionNode": "ALL",
                 "penaltyDuration": "30 sec",
-                "yieldDuration": "1 sec",
+                "yieldDuration": "0 sec",
                 "bulletinLevel": "WARN",
                 "runDurationMillis": 0,
-                "concurrentlySchedulableTaskCount": 1,
+                "concurrentlySchedulableTaskCount": 10,
                 "autoTerminatedRelationships": [
                     "success"
                 ],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
+                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
             }
         ],
         "inputPorts": [],
@@ -455,14 +455,14 @@
                 "source": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "ec187a93-201f-3c3d-b27b-7da68b60b0e1",
+                    "groupId": "b95101d5-0cf1-30dd-9b23-901908951f78",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
                 "destination": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "ec187a93-201f-3c3d-b27b-7da68b60b0e1",
+                    "groupId": "b95101d5-0cf1-30dd-9b23-901908951f78",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
@@ -489,7 +489,7 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
+                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
             },
             {
                 "identifier": "333758af-2f63-3587-813f-8f555c089a34",
@@ -497,14 +497,14 @@
                 "source": {
                     "id": "4f8b14a5-177a-3f7e-b039-c93774455636",
                     "type": "PROCESSOR",
-                    "groupId": "ec187a93-201f-3c3d-b27b-7da68b60b0e1",
+                    "groupId": "b95101d5-0cf1-30dd-9b23-901908951f78",
                     "name": "KafkaConsumeLogTopics",
                     "comments": ""
                 },
                 "destination": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "ec187a93-201f-3c3d-b27b-7da68b60b0e1",
+                    "groupId": "b95101d5-0cf1-30dd-9b23-901908951f78",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
@@ -522,7 +522,7 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
+                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
             }
         ],
         "labels": [],
@@ -622,7 +622,7 @@
                     }
                 },
                 "componentType": "CONTROLLER_SERVICE",
-                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
+                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
             },
             {
                 "identifier": "9de2fea4-dc8e-340e-adcb-31a31bdb0285",
@@ -767,7 +767,7 @@
                     }
                 },
                 "componentType": "CONTROLLER_SERVICE",
-                "groupIdentifier": "ec187a93-201f-3c3d-b27b-7da68b60b0e1"
+                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
             }
         ],
         "variables": {},
