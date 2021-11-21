@@ -4,527 +4,1094 @@
         "name": "ProcessRawLogs",
         "comments": "",
         "position": {
-            "x": 520.0,
-            "y": 136.0
+            "x": 456.0,
+            "y": 40.0
         },
-        "processGroups": [],
-        "remoteProcessGroups": [],
-        "processors": [
+        "processGroups": [
             {
-                "identifier": "4f8b14a5-177a-3f7e-b039-c93774455636",
-                "name": "KafkaConsumeLogTopics",
+                "identifier": "3398279e-a9e5-3f9e-a23d-9e71178a9ff0",
+                "name": "ProcessSuricataLogs",
                 "comments": "",
                 "position": {
-                    "x": 328.0,
-                    "y": 88.0
+                    "x": 696.0,
+                    "y": 696.0
                 },
-                "bundle": {
-                    "group": "org.apache.nifi",
-                    "artifact": "nifi-kafka-2-6-nar",
-                    "version": "1.14.0"
-                },
-                "style": {},
-                "type": "org.apache.nifi.processors.kafka.pubsub.ConsumeKafka_2_6",
-                "properties": {
-                    "header-name-regex": null,
-                    "sasl.username": "notused",
-                    "max.poll.records": "10000",
-                    "group.id": "for-nifi",
-                    "bootstrap.servers": "kafka:29092",
-                    "topic_type": "pattern",
-                    "sasl.kerberos.principal": null,
-                    "sasl.kerberos.service.name": null,
-                    "security.protocol": "PLAINTEXT",
-                    "kerberos-credentials-service": null,
-                    "ssl.context.service": null,
-                    "max-uncommit-offset-wait": "1 secs",
-                    "sasl.mechanism": "PLAIN",
-                    "sasl.token.auth": "false",
-                    "sasl.kerberos.keytab": null,
-                    "honor-transactions": "true",
-                    "Communications Timeout": "60 secs",
-                    "topic": "^syslog$",
-                    "separate-by-key": "false",
-                    "message-header-encoding": "UTF-8",
-                    "sasl.password": "#{VAR_KAFKA_PASSWORD}",
-                    "message-demarcator": null,
-                    "key-attribute-encoding": "utf-8",
-                    "auto.offset.reset": "earliest"
-                },
-                "propertyDescriptors": {
-                    "header-name-regex": {
-                        "name": "header-name-regex",
-                        "displayName": "Headers to Add as Attributes (Regex)",
-                        "identifiesControllerService": false,
-                        "sensitive": false
+                "processGroups": [],
+                "remoteProcessGroups": [],
+                "processors": [
+                    {
+                        "identifier": "4f8b14a5-177a-3f7e-b039-c93774455636",
+                        "name": "KafkaConsumeLogTopics",
+                        "comments": "",
+                        "position": {
+                            "x": 424.0,
+                            "y": 432.0
+                        },
+                        "bundle": {
+                            "group": "org.apache.nifi",
+                            "artifact": "nifi-kafka-2-6-nar",
+                            "version": "1.14.0"
+                        },
+                        "style": {},
+                        "type": "org.apache.nifi.processors.kafka.pubsub.ConsumeKafka_2_6",
+                        "properties": {
+                            "header-name-regex": null,
+                            "sasl.username": "notused",
+                            "max.poll.records": "10000",
+                            "group.id": "for-nifi-suricata",
+                            "bootstrap.servers": "kafka:29092",
+                            "topic_type": "pattern",
+                            "sasl.kerberos.principal": null,
+                            "sasl.kerberos.service.name": null,
+                            "security.protocol": "PLAINTEXT",
+                            "kerberos-credentials-service": null,
+                            "ssl.context.service": null,
+                            "max-uncommit-offset-wait": "1 secs",
+                            "sasl.mechanism": "PLAIN",
+                            "sasl.token.auth": "false",
+                            "sasl.kerberos.keytab": null,
+                            "honor-transactions": "true",
+                            "Communications Timeout": "60 secs",
+                            "topic": "^suricata$",
+                            "separate-by-key": "false",
+                            "message-header-encoding": "UTF-8",
+                            "sasl.password": "#{VAR_KAFKA_PASSWORD}",
+                            "message-demarcator": null,
+                            "key-attribute-encoding": "utf-8",
+                            "auto.offset.reset": "earliest"
+                        },
+                        "propertyDescriptors": {
+                            "header-name-regex": {
+                                "name": "header-name-regex",
+                                "displayName": "Headers to Add as Attributes (Regex)",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.username": {
+                                "name": "sasl.username",
+                                "displayName": "Username",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "max.poll.records": {
+                                "name": "max.poll.records",
+                                "displayName": "Max Poll Records",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "group.id": {
+                                "name": "group.id",
+                                "displayName": "Group ID",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "bootstrap.servers": {
+                                "name": "bootstrap.servers",
+                                "displayName": "Kafka Brokers",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "topic_type": {
+                                "name": "topic_type",
+                                "displayName": "Topic Name Format",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.principal": {
+                                "name": "sasl.kerberos.principal",
+                                "displayName": "Kerberos Principal",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.service.name": {
+                                "name": "sasl.kerberos.service.name",
+                                "displayName": "Kerberos Service Name",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "security.protocol": {
+                                "name": "security.protocol",
+                                "displayName": "Security Protocol",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "kerberos-credentials-service": {
+                                "name": "kerberos-credentials-service",
+                                "displayName": "Kerberos Credentials Service",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "ssl.context.service": {
+                                "name": "ssl.context.service",
+                                "displayName": "SSL Context Service",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "max-uncommit-offset-wait": {
+                                "name": "max-uncommit-offset-wait",
+                                "displayName": "Max Uncommitted Time",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.mechanism": {
+                                "name": "sasl.mechanism",
+                                "displayName": "SASL Mechanism",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.token.auth": {
+                                "name": "sasl.token.auth",
+                                "displayName": "Token Auth",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.keytab": {
+                                "name": "sasl.kerberos.keytab",
+                                "displayName": "Kerberos Keytab",
+                                "identifiesControllerService": false,
+                                "sensitive": false,
+                                "resourceDefinition": {
+                                    "cardinality": "SINGLE",
+                                    "resourceTypes": [
+                                        "FILE"
+                                    ]
+                                }
+                            },
+                            "honor-transactions": {
+                                "name": "honor-transactions",
+                                "displayName": "Honor Transactions",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "Communications Timeout": {
+                                "name": "Communications Timeout",
+                                "displayName": "Communications Timeout",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "topic": {
+                                "name": "topic",
+                                "displayName": "Topic Name(s)",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "separate-by-key": {
+                                "name": "separate-by-key",
+                                "displayName": "Separate By Key",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "message-header-encoding": {
+                                "name": "message-header-encoding",
+                                "displayName": "Message Header Encoding",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.password": {
+                                "name": "sasl.password",
+                                "displayName": "Password",
+                                "identifiesControllerService": false,
+                                "sensitive": true
+                            },
+                            "message-demarcator": {
+                                "name": "message-demarcator",
+                                "displayName": "Message Demarcator",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "key-attribute-encoding": {
+                                "name": "key-attribute-encoding",
+                                "displayName": "Key Attribute Encoding",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "auto.offset.reset": {
+                                "name": "auto.offset.reset",
+                                "displayName": "Offset Reset",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            }
+                        },
+                        "schedulingPeriod": "0 sec",
+                        "schedulingStrategy": "TIMER_DRIVEN",
+                        "executionNode": "ALL",
+                        "penaltyDuration": "30 sec",
+                        "yieldDuration": "1 sec",
+                        "bulletinLevel": "WARN",
+                        "runDurationMillis": 0,
+                        "concurrentlySchedulableTaskCount": 1,
+                        "autoTerminatedRelationships": [],
+                        "scheduledState": "ENABLED",
+                        "componentType": "PROCESSOR",
+                        "groupIdentifier": "3398279e-a9e5-3f9e-a23d-9e71178a9ff0"
                     },
-                    "sasl.username": {
-                        "name": "sasl.username",
-                        "displayName": "Username",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "max.poll.records": {
-                        "name": "max.poll.records",
-                        "displayName": "Max Poll Records",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "group.id": {
-                        "name": "group.id",
-                        "displayName": "Group ID",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "bootstrap.servers": {
-                        "name": "bootstrap.servers",
-                        "displayName": "Kafka Brokers",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "topic_type": {
-                        "name": "topic_type",
-                        "displayName": "Topic Name Format",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.kerberos.principal": {
-                        "name": "sasl.kerberos.principal",
-                        "displayName": "Kerberos Principal",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.kerberos.service.name": {
-                        "name": "sasl.kerberos.service.name",
-                        "displayName": "Kerberos Service Name",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "security.protocol": {
-                        "name": "security.protocol",
-                        "displayName": "Security Protocol",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "kerberos-credentials-service": {
-                        "name": "kerberos-credentials-service",
-                        "displayName": "Kerberos Credentials Service",
-                        "identifiesControllerService": true,
-                        "sensitive": false
-                    },
-                    "ssl.context.service": {
-                        "name": "ssl.context.service",
-                        "displayName": "SSL Context Service",
-                        "identifiesControllerService": true,
-                        "sensitive": false
-                    },
-                    "max-uncommit-offset-wait": {
-                        "name": "max-uncommit-offset-wait",
-                        "displayName": "Max Uncommitted Time",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.mechanism": {
-                        "name": "sasl.mechanism",
-                        "displayName": "SASL Mechanism",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.token.auth": {
-                        "name": "sasl.token.auth",
-                        "displayName": "Token Auth",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.kerberos.keytab": {
-                        "name": "sasl.kerberos.keytab",
-                        "displayName": "Kerberos Keytab",
-                        "identifiesControllerService": false,
-                        "sensitive": false,
-                        "resourceDefinition": {
-                            "cardinality": "SINGLE",
-                            "resourceTypes": [
-                                "FILE"
-                            ]
-                        }
-                    },
-                    "honor-transactions": {
-                        "name": "honor-transactions",
-                        "displayName": "Honor Transactions",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Communications Timeout": {
-                        "name": "Communications Timeout",
-                        "displayName": "Communications Timeout",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "topic": {
-                        "name": "topic",
-                        "displayName": "Topic Name(s)",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "separate-by-key": {
-                        "name": "separate-by-key",
-                        "displayName": "Separate By Key",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "message-header-encoding": {
-                        "name": "message-header-encoding",
-                        "displayName": "Message Header Encoding",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.password": {
-                        "name": "sasl.password",
-                        "displayName": "Password",
-                        "identifiesControllerService": false,
-                        "sensitive": true
-                    },
-                    "message-demarcator": {
-                        "name": "message-demarcator",
-                        "displayName": "Message Demarcator",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "key-attribute-encoding": {
-                        "name": "key-attribute-encoding",
-                        "displayName": "Key Attribute Encoding",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "auto.offset.reset": {
-                        "name": "auto.offset.reset",
-                        "displayName": "Offset Reset",
-                        "identifiesControllerService": false,
-                        "sensitive": false
+                    {
+                        "identifier": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
+                        "name": "KafkaPublishForLoki",
+                        "comments": "",
+                        "position": {
+                            "x": 1024.0,
+                            "y": 432.0
+                        },
+                        "bundle": {
+                            "group": "org.apache.nifi",
+                            "artifact": "nifi-kafka-2-6-nar",
+                            "version": "1.14.0"
+                        },
+                        "style": {},
+                        "type": "org.apache.nifi.processors.kafka.pubsub.PublishKafkaRecord_2_6",
+                        "properties": {
+                            "compression.type": "none",
+                            "attribute-name-regex": null,
+                            "record-writer": "9de2fea4-dc8e-340e-adcb-31a31bdb0285",
+                            "bootstrap.servers": "kafka:29092",
+                            "sasl.kerberos.principal": null,
+                            "sasl.kerberos.service.name": null,
+                            "kerberos-credentials-service": null,
+                            "partition": null,
+                            "sasl.mechanism": "PLAIN",
+                            "max.block.ms": "5 sec",
+                            "record-reader": "b92e41de-fa76-3296-b453-52d2a7ba090f",
+                            "message-header-encoding": "UTF-8",
+                            "transactional-id-prefix": null,
+                            "ack.wait.time": "5 secs",
+                            "sasl.username": "notused",
+                            "use-transactions": "false",
+                            "acks": "all",
+                            "security.protocol": "PLAINTEXT",
+                            "ssl.context.service": null,
+                            "max.request.size": "1 MB",
+                            "sasl.token.auth": "false",
+                            "message-key-field": null,
+                            "Failure Strategy": "Route to Failure",
+                            "partitioner.class": "org.apache.kafka.clients.producer.internals.DefaultPartitioner",
+                            "sasl.kerberos.keytab": null,
+                            "topic": "loki-suricata",
+                            "sasl.password": "#{VAR_KAFKA_PASSWORD}"
+                        },
+                        "propertyDescriptors": {
+                            "compression.type": {
+                                "name": "compression.type",
+                                "displayName": "Compression Type",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "attribute-name-regex": {
+                                "name": "attribute-name-regex",
+                                "displayName": "Attributes to Send as Headers (Regex)",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "record-writer": {
+                                "name": "record-writer",
+                                "displayName": "Record Writer",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "bootstrap.servers": {
+                                "name": "bootstrap.servers",
+                                "displayName": "Kafka Brokers",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.principal": {
+                                "name": "sasl.kerberos.principal",
+                                "displayName": "Kerberos Principal",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.service.name": {
+                                "name": "sasl.kerberos.service.name",
+                                "displayName": "Kerberos Service Name",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "kerberos-credentials-service": {
+                                "name": "kerberos-credentials-service",
+                                "displayName": "Kerberos Credentials Service",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "partition": {
+                                "name": "partition",
+                                "displayName": "Partition",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.mechanism": {
+                                "name": "sasl.mechanism",
+                                "displayName": "SASL Mechanism",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "max.block.ms": {
+                                "name": "max.block.ms",
+                                "displayName": "Max Metadata Wait Time",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "record-reader": {
+                                "name": "record-reader",
+                                "displayName": "Record Reader",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "message-header-encoding": {
+                                "name": "message-header-encoding",
+                                "displayName": "Message Header Encoding",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "transactional-id-prefix": {
+                                "name": "transactional-id-prefix",
+                                "displayName": "Transactional Id Prefix",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "ack.wait.time": {
+                                "name": "ack.wait.time",
+                                "displayName": "Acknowledgment Wait Time",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.username": {
+                                "name": "sasl.username",
+                                "displayName": "Username",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "use-transactions": {
+                                "name": "use-transactions",
+                                "displayName": "Use Transactions",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "acks": {
+                                "name": "acks",
+                                "displayName": "Delivery Guarantee",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "security.protocol": {
+                                "name": "security.protocol",
+                                "displayName": "Security Protocol",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "ssl.context.service": {
+                                "name": "ssl.context.service",
+                                "displayName": "SSL Context Service",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "max.request.size": {
+                                "name": "max.request.size",
+                                "displayName": "Max Request Size",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.token.auth": {
+                                "name": "sasl.token.auth",
+                                "displayName": "Token Auth",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "message-key-field": {
+                                "name": "message-key-field",
+                                "displayName": "Message Key Field",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "Failure Strategy": {
+                                "name": "Failure Strategy",
+                                "displayName": "Failure Strategy",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "partitioner.class": {
+                                "name": "partitioner.class",
+                                "displayName": "Partitioner class",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.keytab": {
+                                "name": "sasl.kerberos.keytab",
+                                "displayName": "Kerberos Keytab",
+                                "identifiesControllerService": false,
+                                "sensitive": false,
+                                "resourceDefinition": {
+                                    "cardinality": "SINGLE",
+                                    "resourceTypes": [
+                                        "FILE"
+                                    ]
+                                }
+                            },
+                            "topic": {
+                                "name": "topic",
+                                "displayName": "Topic Name",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.password": {
+                                "name": "sasl.password",
+                                "displayName": "Password",
+                                "identifiesControllerService": false,
+                                "sensitive": true
+                            }
+                        },
+                        "schedulingPeriod": "0 sec",
+                        "schedulingStrategy": "TIMER_DRIVEN",
+                        "executionNode": "ALL",
+                        "penaltyDuration": "30 sec",
+                        "yieldDuration": "0 sec",
+                        "bulletinLevel": "WARN",
+                        "runDurationMillis": 0,
+                        "concurrentlySchedulableTaskCount": 10,
+                        "autoTerminatedRelationships": [
+                            "success"
+                        ],
+                        "scheduledState": "ENABLED",
+                        "componentType": "PROCESSOR",
+                        "groupIdentifier": "3398279e-a9e5-3f9e-a23d-9e71178a9ff0"
                     }
-                },
-                "schedulingPeriod": "0 sec",
-                "schedulingStrategy": "TIMER_DRIVEN",
-                "executionNode": "ALL",
-                "penaltyDuration": "30 sec",
-                "yieldDuration": "1 sec",
-                "bulletinLevel": "WARN",
-                "runDurationMillis": 0,
-                "concurrentlySchedulableTaskCount": 1,
-                "autoTerminatedRelationships": [],
-                "scheduledState": "ENABLED",
-                "componentType": "PROCESSOR",
+                ],
+                "inputPorts": [],
+                "outputPorts": [],
+                "connections": [
+                    {
+                        "identifier": "346a9408-1da8-37f5-9111-c5a155351320",
+                        "name": "",
+                        "source": {
+                            "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
+                            "type": "PROCESSOR",
+                            "groupId": "3398279e-a9e5-3f9e-a23d-9e71178a9ff0",
+                            "name": "KafkaPublishForLoki",
+                            "comments": ""
+                        },
+                        "destination": {
+                            "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
+                            "type": "PROCESSOR",
+                            "groupId": "3398279e-a9e5-3f9e-a23d-9e71178a9ff0",
+                            "name": "KafkaPublishForLoki",
+                            "comments": ""
+                        },
+                        "labelIndex": 1,
+                        "zIndex": 0,
+                        "selectedRelationships": [
+                            "failure"
+                        ],
+                        "backPressureObjectThreshold": 10000,
+                        "backPressureDataSizeThreshold": "1 GB",
+                        "flowFileExpiration": "0 sec",
+                        "prioritizers": [],
+                        "bends": [
+                            {
+                                "x": 1493.0,
+                                "y": 468.0
+                            },
+                            {
+                                "x": 1493.0,
+                                "y": 518.0
+                            }
+                        ],
+                        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+                        "partitioningAttribute": "",
+                        "loadBalanceCompression": "DO_NOT_COMPRESS",
+                        "componentType": "CONNECTION",
+                        "groupIdentifier": "3398279e-a9e5-3f9e-a23d-9e71178a9ff0"
+                    },
+                    {
+                        "identifier": "333758af-2f63-3587-813f-8f555c089a34",
+                        "name": "",
+                        "source": {
+                            "id": "4f8b14a5-177a-3f7e-b039-c93774455636",
+                            "type": "PROCESSOR",
+                            "groupId": "3398279e-a9e5-3f9e-a23d-9e71178a9ff0",
+                            "name": "KafkaConsumeLogTopics",
+                            "comments": ""
+                        },
+                        "destination": {
+                            "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
+                            "type": "PROCESSOR",
+                            "groupId": "3398279e-a9e5-3f9e-a23d-9e71178a9ff0",
+                            "name": "KafkaPublishForLoki",
+                            "comments": ""
+                        },
+                        "labelIndex": 1,
+                        "zIndex": 0,
+                        "selectedRelationships": [
+                            "success"
+                        ],
+                        "backPressureObjectThreshold": 10000,
+                        "backPressureDataSizeThreshold": "1 GB",
+                        "flowFileExpiration": "0 sec",
+                        "prioritizers": [],
+                        "bends": [],
+                        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+                        "partitioningAttribute": "",
+                        "loadBalanceCompression": "DO_NOT_COMPRESS",
+                        "componentType": "CONNECTION",
+                        "groupIdentifier": "3398279e-a9e5-3f9e-a23d-9e71178a9ff0"
+                    }
+                ],
+                "labels": [],
+                "funnels": [],
+                "controllerServices": [],
+                "variables": {},
+                "parameterContextName": "ParameterContext",
+                "defaultFlowFileExpiration": "0 sec",
+                "defaultBackPressureObjectThreshold": 10000,
+                "defaultBackPressureDataSizeThreshold": "1 GB",
+                "flowFileConcurrency": "UNBOUNDED",
+                "flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
+                "componentType": "PROCESS_GROUP",
                 "groupIdentifier": "156947ca-a4d5-38c5-9296-df3c574e3d41"
             },
             {
-                "identifier": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
-                "name": "KafkaPublishForLoki",
+                "identifier": "d38d93ba-ec7d-36fd-bc4b-e11fd77f8014",
+                "name": "ProcessSysLogs",
                 "comments": "",
                 "position": {
-                    "x": 928.0,
-                    "y": 88.0
+                    "x": 696.0,
+                    "y": 464.0
                 },
-                "bundle": {
-                    "group": "org.apache.nifi",
-                    "artifact": "nifi-kafka-2-6-nar",
-                    "version": "1.14.0"
-                },
-                "style": {},
-                "type": "org.apache.nifi.processors.kafka.pubsub.PublishKafkaRecord_2_6",
-                "properties": {
-                    "compression.type": "none",
-                    "attribute-name-regex": null,
-                    "record-writer": "9de2fea4-dc8e-340e-adcb-31a31bdb0285",
-                    "bootstrap.servers": "kafka:29092",
-                    "sasl.kerberos.principal": null,
-                    "sasl.kerberos.service.name": null,
-                    "kerberos-credentials-service": null,
-                    "partition": null,
-                    "sasl.mechanism": "PLAIN",
-                    "max.block.ms": "5 sec",
-                    "record-reader": "b92e41de-fa76-3296-b453-52d2a7ba090f",
-                    "message-header-encoding": "UTF-8",
-                    "transactional-id-prefix": null,
-                    "ack.wait.time": "5 secs",
-                    "sasl.username": "notused",
-                    "use-transactions": "false",
-                    "acks": "all",
-                    "security.protocol": "PLAINTEXT",
-                    "ssl.context.service": null,
-                    "max.request.size": "1 MB",
-                    "sasl.token.auth": "false",
-                    "message-key-field": null,
-                    "Failure Strategy": "Route to Failure",
-                    "partitioner.class": "org.apache.kafka.clients.producer.internals.DefaultPartitioner",
-                    "sasl.kerberos.keytab": null,
-                    "topic": "loki-syslog",
-                    "sasl.password": "#{VAR_KAFKA_PASSWORD}"
-                },
-                "propertyDescriptors": {
-                    "compression.type": {
-                        "name": "compression.type",
-                        "displayName": "Compression Type",
-                        "identifiesControllerService": false,
-                        "sensitive": false
+                "processGroups": [],
+                "remoteProcessGroups": [],
+                "processors": [
+                    {
+                        "identifier": "4f8b14a5-177a-3f7e-b039-c93774455636",
+                        "name": "KafkaConsumeLogTopics",
+                        "comments": "",
+                        "position": {
+                            "x": 424.0,
+                            "y": 432.0
+                        },
+                        "bundle": {
+                            "group": "org.apache.nifi",
+                            "artifact": "nifi-kafka-2-6-nar",
+                            "version": "1.14.0"
+                        },
+                        "style": {},
+                        "type": "org.apache.nifi.processors.kafka.pubsub.ConsumeKafka_2_6",
+                        "properties": {
+                            "header-name-regex": null,
+                            "sasl.username": "notused",
+                            "max.poll.records": "10000",
+                            "group.id": "for-nifi-syslog",
+                            "bootstrap.servers": "kafka:29092",
+                            "topic_type": "pattern",
+                            "sasl.kerberos.principal": null,
+                            "sasl.kerberos.service.name": null,
+                            "security.protocol": "PLAINTEXT",
+                            "kerberos-credentials-service": null,
+                            "ssl.context.service": null,
+                            "max-uncommit-offset-wait": "1 secs",
+                            "sasl.mechanism": "PLAIN",
+                            "sasl.token.auth": "false",
+                            "sasl.kerberos.keytab": null,
+                            "honor-transactions": "true",
+                            "Communications Timeout": "60 secs",
+                            "topic": "^syslog$",
+                            "separate-by-key": "false",
+                            "message-header-encoding": "UTF-8",
+                            "sasl.password": "#{VAR_KAFKA_PASSWORD}",
+                            "message-demarcator": null,
+                            "key-attribute-encoding": "utf-8",
+                            "auto.offset.reset": "earliest"
+                        },
+                        "propertyDescriptors": {
+                            "header-name-regex": {
+                                "name": "header-name-regex",
+                                "displayName": "Headers to Add as Attributes (Regex)",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.username": {
+                                "name": "sasl.username",
+                                "displayName": "Username",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "max.poll.records": {
+                                "name": "max.poll.records",
+                                "displayName": "Max Poll Records",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "group.id": {
+                                "name": "group.id",
+                                "displayName": "Group ID",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "bootstrap.servers": {
+                                "name": "bootstrap.servers",
+                                "displayName": "Kafka Brokers",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "topic_type": {
+                                "name": "topic_type",
+                                "displayName": "Topic Name Format",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.principal": {
+                                "name": "sasl.kerberos.principal",
+                                "displayName": "Kerberos Principal",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.service.name": {
+                                "name": "sasl.kerberos.service.name",
+                                "displayName": "Kerberos Service Name",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "security.protocol": {
+                                "name": "security.protocol",
+                                "displayName": "Security Protocol",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "kerberos-credentials-service": {
+                                "name": "kerberos-credentials-service",
+                                "displayName": "Kerberos Credentials Service",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "ssl.context.service": {
+                                "name": "ssl.context.service",
+                                "displayName": "SSL Context Service",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "max-uncommit-offset-wait": {
+                                "name": "max-uncommit-offset-wait",
+                                "displayName": "Max Uncommitted Time",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.mechanism": {
+                                "name": "sasl.mechanism",
+                                "displayName": "SASL Mechanism",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.token.auth": {
+                                "name": "sasl.token.auth",
+                                "displayName": "Token Auth",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.keytab": {
+                                "name": "sasl.kerberos.keytab",
+                                "displayName": "Kerberos Keytab",
+                                "identifiesControllerService": false,
+                                "sensitive": false,
+                                "resourceDefinition": {
+                                    "cardinality": "SINGLE",
+                                    "resourceTypes": [
+                                        "FILE"
+                                    ]
+                                }
+                            },
+                            "honor-transactions": {
+                                "name": "honor-transactions",
+                                "displayName": "Honor Transactions",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "Communications Timeout": {
+                                "name": "Communications Timeout",
+                                "displayName": "Communications Timeout",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "topic": {
+                                "name": "topic",
+                                "displayName": "Topic Name(s)",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "separate-by-key": {
+                                "name": "separate-by-key",
+                                "displayName": "Separate By Key",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "message-header-encoding": {
+                                "name": "message-header-encoding",
+                                "displayName": "Message Header Encoding",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.password": {
+                                "name": "sasl.password",
+                                "displayName": "Password",
+                                "identifiesControllerService": false,
+                                "sensitive": true
+                            },
+                            "message-demarcator": {
+                                "name": "message-demarcator",
+                                "displayName": "Message Demarcator",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "key-attribute-encoding": {
+                                "name": "key-attribute-encoding",
+                                "displayName": "Key Attribute Encoding",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "auto.offset.reset": {
+                                "name": "auto.offset.reset",
+                                "displayName": "Offset Reset",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            }
+                        },
+                        "schedulingPeriod": "0 sec",
+                        "schedulingStrategy": "TIMER_DRIVEN",
+                        "executionNode": "ALL",
+                        "penaltyDuration": "30 sec",
+                        "yieldDuration": "1 sec",
+                        "bulletinLevel": "WARN",
+                        "runDurationMillis": 0,
+                        "concurrentlySchedulableTaskCount": 1,
+                        "autoTerminatedRelationships": [],
+                        "scheduledState": "ENABLED",
+                        "componentType": "PROCESSOR",
+                        "groupIdentifier": "d38d93ba-ec7d-36fd-bc4b-e11fd77f8014"
                     },
-                    "attribute-name-regex": {
-                        "name": "attribute-name-regex",
-                        "displayName": "Attributes to Send as Headers (Regex)",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "record-writer": {
-                        "name": "record-writer",
-                        "displayName": "Record Writer",
-                        "identifiesControllerService": true,
-                        "sensitive": false
-                    },
-                    "bootstrap.servers": {
-                        "name": "bootstrap.servers",
-                        "displayName": "Kafka Brokers",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.kerberos.principal": {
-                        "name": "sasl.kerberos.principal",
-                        "displayName": "Kerberos Principal",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.kerberos.service.name": {
-                        "name": "sasl.kerberos.service.name",
-                        "displayName": "Kerberos Service Name",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "kerberos-credentials-service": {
-                        "name": "kerberos-credentials-service",
-                        "displayName": "Kerberos Credentials Service",
-                        "identifiesControllerService": true,
-                        "sensitive": false
-                    },
-                    "partition": {
-                        "name": "partition",
-                        "displayName": "Partition",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.mechanism": {
-                        "name": "sasl.mechanism",
-                        "displayName": "SASL Mechanism",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "max.block.ms": {
-                        "name": "max.block.ms",
-                        "displayName": "Max Metadata Wait Time",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "record-reader": {
-                        "name": "record-reader",
-                        "displayName": "Record Reader",
-                        "identifiesControllerService": true,
-                        "sensitive": false
-                    },
-                    "message-header-encoding": {
-                        "name": "message-header-encoding",
-                        "displayName": "Message Header Encoding",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "transactional-id-prefix": {
-                        "name": "transactional-id-prefix",
-                        "displayName": "Transactional Id Prefix",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "ack.wait.time": {
-                        "name": "ack.wait.time",
-                        "displayName": "Acknowledgment Wait Time",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.username": {
-                        "name": "sasl.username",
-                        "displayName": "Username",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "use-transactions": {
-                        "name": "use-transactions",
-                        "displayName": "Use Transactions",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "acks": {
-                        "name": "acks",
-                        "displayName": "Delivery Guarantee",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "security.protocol": {
-                        "name": "security.protocol",
-                        "displayName": "Security Protocol",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "ssl.context.service": {
-                        "name": "ssl.context.service",
-                        "displayName": "SSL Context Service",
-                        "identifiesControllerService": true,
-                        "sensitive": false
-                    },
-                    "max.request.size": {
-                        "name": "max.request.size",
-                        "displayName": "Max Request Size",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.token.auth": {
-                        "name": "sasl.token.auth",
-                        "displayName": "Token Auth",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "message-key-field": {
-                        "name": "message-key-field",
-                        "displayName": "Message Key Field",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Failure Strategy": {
-                        "name": "Failure Strategy",
-                        "displayName": "Failure Strategy",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "partitioner.class": {
-                        "name": "partitioner.class",
-                        "displayName": "Partitioner class",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.kerberos.keytab": {
-                        "name": "sasl.kerberos.keytab",
-                        "displayName": "Kerberos Keytab",
-                        "identifiesControllerService": false,
-                        "sensitive": false,
-                        "resourceDefinition": {
-                            "cardinality": "SINGLE",
-                            "resourceTypes": [
-                                "FILE"
-                            ]
-                        }
-                    },
-                    "topic": {
-                        "name": "topic",
-                        "displayName": "Topic Name",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "sasl.password": {
-                        "name": "sasl.password",
-                        "displayName": "Password",
-                        "identifiesControllerService": false,
-                        "sensitive": true
+                    {
+                        "identifier": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
+                        "name": "KafkaPublishForLoki",
+                        "comments": "",
+                        "position": {
+                            "x": 1024.0,
+                            "y": 432.0
+                        },
+                        "bundle": {
+                            "group": "org.apache.nifi",
+                            "artifact": "nifi-kafka-2-6-nar",
+                            "version": "1.14.0"
+                        },
+                        "style": {},
+                        "type": "org.apache.nifi.processors.kafka.pubsub.PublishKafkaRecord_2_6",
+                        "properties": {
+                            "compression.type": "none",
+                            "attribute-name-regex": null,
+                            "record-writer": "9de2fea4-dc8e-340e-adcb-31a31bdb0285",
+                            "bootstrap.servers": "kafka:29092",
+                            "sasl.kerberos.principal": null,
+                            "sasl.kerberos.service.name": null,
+                            "kerberos-credentials-service": null,
+                            "partition": null,
+                            "sasl.mechanism": "PLAIN",
+                            "max.block.ms": "5 sec",
+                            "record-reader": "b92e41de-fa76-3296-b453-52d2a7ba090f",
+                            "message-header-encoding": "UTF-8",
+                            "transactional-id-prefix": null,
+                            "ack.wait.time": "5 secs",
+                            "sasl.username": "notused",
+                            "use-transactions": "false",
+                            "acks": "all",
+                            "security.protocol": "PLAINTEXT",
+                            "ssl.context.service": null,
+                            "max.request.size": "1 MB",
+                            "sasl.token.auth": "false",
+                            "message-key-field": null,
+                            "Failure Strategy": "Route to Failure",
+                            "partitioner.class": "org.apache.kafka.clients.producer.internals.DefaultPartitioner",
+                            "sasl.kerberos.keytab": null,
+                            "topic": "loki-syslog",
+                            "sasl.password": "#{VAR_KAFKA_PASSWORD}"
+                        },
+                        "propertyDescriptors": {
+                            "compression.type": {
+                                "name": "compression.type",
+                                "displayName": "Compression Type",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "attribute-name-regex": {
+                                "name": "attribute-name-regex",
+                                "displayName": "Attributes to Send as Headers (Regex)",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "record-writer": {
+                                "name": "record-writer",
+                                "displayName": "Record Writer",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "bootstrap.servers": {
+                                "name": "bootstrap.servers",
+                                "displayName": "Kafka Brokers",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.principal": {
+                                "name": "sasl.kerberos.principal",
+                                "displayName": "Kerberos Principal",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.service.name": {
+                                "name": "sasl.kerberos.service.name",
+                                "displayName": "Kerberos Service Name",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "kerberos-credentials-service": {
+                                "name": "kerberos-credentials-service",
+                                "displayName": "Kerberos Credentials Service",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "partition": {
+                                "name": "partition",
+                                "displayName": "Partition",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.mechanism": {
+                                "name": "sasl.mechanism",
+                                "displayName": "SASL Mechanism",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "max.block.ms": {
+                                "name": "max.block.ms",
+                                "displayName": "Max Metadata Wait Time",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "record-reader": {
+                                "name": "record-reader",
+                                "displayName": "Record Reader",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "message-header-encoding": {
+                                "name": "message-header-encoding",
+                                "displayName": "Message Header Encoding",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "transactional-id-prefix": {
+                                "name": "transactional-id-prefix",
+                                "displayName": "Transactional Id Prefix",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "ack.wait.time": {
+                                "name": "ack.wait.time",
+                                "displayName": "Acknowledgment Wait Time",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.username": {
+                                "name": "sasl.username",
+                                "displayName": "Username",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "use-transactions": {
+                                "name": "use-transactions",
+                                "displayName": "Use Transactions",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "acks": {
+                                "name": "acks",
+                                "displayName": "Delivery Guarantee",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "security.protocol": {
+                                "name": "security.protocol",
+                                "displayName": "Security Protocol",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "ssl.context.service": {
+                                "name": "ssl.context.service",
+                                "displayName": "SSL Context Service",
+                                "identifiesControllerService": true,
+                                "sensitive": false
+                            },
+                            "max.request.size": {
+                                "name": "max.request.size",
+                                "displayName": "Max Request Size",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.token.auth": {
+                                "name": "sasl.token.auth",
+                                "displayName": "Token Auth",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "message-key-field": {
+                                "name": "message-key-field",
+                                "displayName": "Message Key Field",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "Failure Strategy": {
+                                "name": "Failure Strategy",
+                                "displayName": "Failure Strategy",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "partitioner.class": {
+                                "name": "partitioner.class",
+                                "displayName": "Partitioner class",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.kerberos.keytab": {
+                                "name": "sasl.kerberos.keytab",
+                                "displayName": "Kerberos Keytab",
+                                "identifiesControllerService": false,
+                                "sensitive": false,
+                                "resourceDefinition": {
+                                    "cardinality": "SINGLE",
+                                    "resourceTypes": [
+                                        "FILE"
+                                    ]
+                                }
+                            },
+                            "topic": {
+                                "name": "topic",
+                                "displayName": "Topic Name",
+                                "identifiesControllerService": false,
+                                "sensitive": false
+                            },
+                            "sasl.password": {
+                                "name": "sasl.password",
+                                "displayName": "Password",
+                                "identifiesControllerService": false,
+                                "sensitive": true
+                            }
+                        },
+                        "schedulingPeriod": "0 sec",
+                        "schedulingStrategy": "TIMER_DRIVEN",
+                        "executionNode": "ALL",
+                        "penaltyDuration": "30 sec",
+                        "yieldDuration": "0 sec",
+                        "bulletinLevel": "WARN",
+                        "runDurationMillis": 0,
+                        "concurrentlySchedulableTaskCount": 10,
+                        "autoTerminatedRelationships": [
+                            "success"
+                        ],
+                        "scheduledState": "ENABLED",
+                        "componentType": "PROCESSOR",
+                        "groupIdentifier": "d38d93ba-ec7d-36fd-bc4b-e11fd77f8014"
                     }
-                },
-                "schedulingPeriod": "0 sec",
-                "schedulingStrategy": "TIMER_DRIVEN",
-                "executionNode": "ALL",
-                "penaltyDuration": "30 sec",
-                "yieldDuration": "0 sec",
-                "bulletinLevel": "WARN",
-                "runDurationMillis": 0,
-                "concurrentlySchedulableTaskCount": 10,
-                "autoTerminatedRelationships": [
-                    "success"
                 ],
-                "scheduledState": "ENABLED",
-                "componentType": "PROCESSOR",
+                "inputPorts": [],
+                "outputPorts": [],
+                "connections": [
+                    {
+                        "identifier": "346a9408-1da8-37f5-9111-c5a155351320",
+                        "name": "",
+                        "source": {
+                            "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
+                            "type": "PROCESSOR",
+                            "groupId": "d38d93ba-ec7d-36fd-bc4b-e11fd77f8014",
+                            "name": "KafkaPublishForLoki",
+                            "comments": ""
+                        },
+                        "destination": {
+                            "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
+                            "type": "PROCESSOR",
+                            "groupId": "d38d93ba-ec7d-36fd-bc4b-e11fd77f8014",
+                            "name": "KafkaPublishForLoki",
+                            "comments": ""
+                        },
+                        "labelIndex": 1,
+                        "zIndex": 0,
+                        "selectedRelationships": [
+                            "failure"
+                        ],
+                        "backPressureObjectThreshold": 10000,
+                        "backPressureDataSizeThreshold": "1 GB",
+                        "flowFileExpiration": "0 sec",
+                        "prioritizers": [],
+                        "bends": [
+                            {
+                                "x": 1493.0,
+                                "y": 468.0
+                            },
+                            {
+                                "x": 1493.0,
+                                "y": 518.0
+                            }
+                        ],
+                        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+                        "partitioningAttribute": "",
+                        "loadBalanceCompression": "DO_NOT_COMPRESS",
+                        "componentType": "CONNECTION",
+                        "groupIdentifier": "d38d93ba-ec7d-36fd-bc4b-e11fd77f8014"
+                    },
+                    {
+                        "identifier": "333758af-2f63-3587-813f-8f555c089a34",
+                        "name": "",
+                        "source": {
+                            "id": "4f8b14a5-177a-3f7e-b039-c93774455636",
+                            "type": "PROCESSOR",
+                            "groupId": "d38d93ba-ec7d-36fd-bc4b-e11fd77f8014",
+                            "name": "KafkaConsumeLogTopics",
+                            "comments": ""
+                        },
+                        "destination": {
+                            "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
+                            "type": "PROCESSOR",
+                            "groupId": "d38d93ba-ec7d-36fd-bc4b-e11fd77f8014",
+                            "name": "KafkaPublishForLoki",
+                            "comments": ""
+                        },
+                        "labelIndex": 1,
+                        "zIndex": 0,
+                        "selectedRelationships": [
+                            "success"
+                        ],
+                        "backPressureObjectThreshold": 10000,
+                        "backPressureDataSizeThreshold": "1 GB",
+                        "flowFileExpiration": "0 sec",
+                        "prioritizers": [],
+                        "bends": [],
+                        "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+                        "partitioningAttribute": "",
+                        "loadBalanceCompression": "DO_NOT_COMPRESS",
+                        "componentType": "CONNECTION",
+                        "groupIdentifier": "d38d93ba-ec7d-36fd-bc4b-e11fd77f8014"
+                    }
+                ],
+                "labels": [],
+                "funnels": [],
+                "controllerServices": [],
+                "variables": {},
+                "parameterContextName": "ParameterContext",
+                "defaultFlowFileExpiration": "0 sec",
+                "defaultBackPressureObjectThreshold": 10000,
+                "defaultBackPressureDataSizeThreshold": "1 GB",
+                "flowFileConcurrency": "UNBOUNDED",
+                "flowFileOutboundPolicy": "STREAM_WHEN_AVAILABLE",
+                "componentType": "PROCESS_GROUP",
                 "groupIdentifier": "156947ca-a4d5-38c5-9296-df3c574e3d41"
             }
         ],
+        "remoteProcessGroups": [],
+        "processors": [],
         "inputPorts": [],
         "outputPorts": [],
-        "connections": [
-            {
-                "identifier": "346a9408-1da8-37f5-9111-c5a155351320",
-                "name": "",
-                "source": {
-                    "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
-                    "type": "PROCESSOR",
-                    "groupId": "156947ca-a4d5-38c5-9296-df3c574e3d41",
-                    "name": "KafkaPublishForLoki",
-                    "comments": ""
-                },
-                "destination": {
-                    "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
-                    "type": "PROCESSOR",
-                    "groupId": "156947ca-a4d5-38c5-9296-df3c574e3d41",
-                    "name": "KafkaPublishForLoki",
-                    "comments": ""
-                },
-                "labelIndex": 1,
-                "zIndex": 0,
-                "selectedRelationships": [
-                    "failure"
-                ],
-                "backPressureObjectThreshold": 10000,
-                "backPressureDataSizeThreshold": "1 GB",
-                "flowFileExpiration": "0 sec",
-                "prioritizers": [],
-                "bends": [
-                    {
-                        "x": 1397.0,
-                        "y": 127.0
-                    },
-                    {
-                        "x": 1397.0,
-                        "y": 177.0
-                    }
-                ],
-                "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
-                "partitioningAttribute": "",
-                "loadBalanceCompression": "DO_NOT_COMPRESS",
-                "componentType": "CONNECTION",
-                "groupIdentifier": "156947ca-a4d5-38c5-9296-df3c574e3d41"
-            },
-            {
-                "identifier": "333758af-2f63-3587-813f-8f555c089a34",
-                "name": "",
-                "source": {
-                    "id": "4f8b14a5-177a-3f7e-b039-c93774455636",
-                    "type": "PROCESSOR",
-                    "groupId": "156947ca-a4d5-38c5-9296-df3c574e3d41",
-                    "name": "KafkaConsumeLogTopics",
-                    "comments": ""
-                },
-                "destination": {
-                    "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
-                    "type": "PROCESSOR",
-                    "groupId": "156947ca-a4d5-38c5-9296-df3c574e3d41",
-                    "name": "KafkaPublishForLoki",
-                    "comments": ""
-                },
-                "labelIndex": 1,
-                "zIndex": 0,
-                "selectedRelationships": [
-                    "success"
-                ],
-                "backPressureObjectThreshold": 10000,
-                "backPressureDataSizeThreshold": "1 GB",
-                "flowFileExpiration": "0 sec",
-                "prioritizers": [],
-                "bends": [],
-                "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
-                "partitioningAttribute": "",
-                "loadBalanceCompression": "DO_NOT_COMPRESS",
-                "componentType": "CONNECTION",
-                "groupIdentifier": "156947ca-a4d5-38c5-9296-df3c574e3d41"
-            }
-        ],
+        "connections": [],
         "labels": [],
         "funnels": [],
         "controllerServices": [
