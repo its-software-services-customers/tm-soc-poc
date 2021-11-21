@@ -1,11 +1,11 @@
 {
     "flowContents": {
-        "identifier": "b95101d5-0cf1-30dd-9b23-901908951f78",
+        "identifier": "156947ca-a4d5-38c5-9296-df3c574e3d41",
         "name": "ProcessRawLogs",
         "comments": "",
         "position": {
-            "x": 552.0,
-            "y": 16.0
+            "x": 520.0,
+            "y": 136.0
         },
         "processGroups": [],
         "remoteProcessGroups": [],
@@ -214,7 +214,7 @@
                 "autoTerminatedRelationships": [],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
+                "groupIdentifier": "156947ca-a4d5-38c5-9296-df3c574e3d41"
             },
             {
                 "identifier": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
@@ -257,7 +257,7 @@
                     "Failure Strategy": "Route to Failure",
                     "partitioner.class": "org.apache.kafka.clients.producer.internals.DefaultPartitioner",
                     "sasl.kerberos.keytab": null,
-                    "topic": "loki",
+                    "topic": "loki-syslog",
                     "sasl.password": "#{VAR_KAFKA_PASSWORD}"
                 },
                 "propertyDescriptors": {
@@ -443,7 +443,7 @@
                 ],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
+                "groupIdentifier": "156947ca-a4d5-38c5-9296-df3c574e3d41"
             }
         ],
         "inputPorts": [],
@@ -455,14 +455,14 @@
                 "source": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "b95101d5-0cf1-30dd-9b23-901908951f78",
+                    "groupId": "156947ca-a4d5-38c5-9296-df3c574e3d41",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
                 "destination": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "b95101d5-0cf1-30dd-9b23-901908951f78",
+                    "groupId": "156947ca-a4d5-38c5-9296-df3c574e3d41",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
@@ -489,7 +489,7 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
+                "groupIdentifier": "156947ca-a4d5-38c5-9296-df3c574e3d41"
             },
             {
                 "identifier": "333758af-2f63-3587-813f-8f555c089a34",
@@ -497,14 +497,14 @@
                 "source": {
                     "id": "4f8b14a5-177a-3f7e-b039-c93774455636",
                     "type": "PROCESSOR",
-                    "groupId": "b95101d5-0cf1-30dd-9b23-901908951f78",
+                    "groupId": "156947ca-a4d5-38c5-9296-df3c574e3d41",
                     "name": "KafkaConsumeLogTopics",
                     "comments": ""
                 },
                 "destination": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "b95101d5-0cf1-30dd-9b23-901908951f78",
+                    "groupId": "156947ca-a4d5-38c5-9296-df3c574e3d41",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
@@ -522,7 +522,7 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
+                "groupIdentifier": "156947ca-a4d5-38c5-9296-df3c574e3d41"
             }
         ],
         "labels": [],
@@ -622,7 +622,7 @@
                     }
                 },
                 "componentType": "CONTROLLER_SERVICE",
-                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
+                "groupIdentifier": "156947ca-a4d5-38c5-9296-df3c574e3d41"
             },
             {
                 "identifier": "9de2fea4-dc8e-340e-adcb-31a31bdb0285",
@@ -767,7 +767,7 @@
                     }
                 },
                 "componentType": "CONTROLLER_SERVICE",
-                "groupIdentifier": "b95101d5-0cf1-30dd-9b23-901908951f78"
+                "groupIdentifier": "156947ca-a4d5-38c5-9296-df3c574e3d41"
             }
         ],
         "variables": {},
