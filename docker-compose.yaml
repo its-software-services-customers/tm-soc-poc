@@ -258,9 +258,9 @@ services:
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
-  logstash-kafka:
+  logstash-syslog-kafka:
     image: docker.elastic.co/logstash/logstash:7.15.2
-    container_name: logstash-kafka
+    container_name: logstash-syslog-kafka
     user: root
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
@@ -270,8 +270,8 @@ services:
     ports:
       - '5140:5140'
     volumes:
-      - ${BASEDIR}/00-configs/logstash-kafka.yml:/usr/share/logstash/config/logstash.yml:ro
-      - ${BASEDIR}/00-configs/pipelines/for-kafka:/usr/share/logstash/pipeline:ro
+      - ${BASEDIR}/00-configs/logstash-syslog-kafka.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ${BASEDIR}/00-configs/pipelines/for-syslog-kafka:/usr/share/logstash/pipeline:ro
       - /var/log:/data
     logging:
       driver: "json-file"
@@ -279,9 +279,9 @@ services:
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
 
-  logstash-loki:
+  logstash-kafka-loki:
     image: grafana/logstash-output-loki:2.4.1-amd64
-    container_name: logstash-loki
+    container_name: logstash-kafka-loki
     user: root
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
@@ -289,8 +289,8 @@ services:
     depends_on:
       - kafka
     volumes:
-      - ${BASEDIR}/00-configs/logstash-loki.yml:/usr/share/logstash/config/logstash.yml:ro
-      - ${BASEDIR}/00-configs/pipelines/for-loki:/usr/share/logstash/pipeline:ro
+      - ${BASEDIR}/00-configs/logstash-kafka-loki.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ${BASEDIR}/00-configs/pipelines/for-kafka-loki:/usr/share/logstash/pipeline:ro
     logging:
       driver: "json-file"
       options: 
