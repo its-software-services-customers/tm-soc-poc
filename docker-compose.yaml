@@ -264,7 +264,7 @@ services:
     user: root
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-      DUMMY: "012"
+      DUMMY: "013"
     depends_on:
       - kafka
     ports:
@@ -284,7 +284,7 @@ services:
     user: root
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-      DUMMY: "001"
+      DUMMY: "002"
     depends_on:
       - kafka
     ports:
@@ -305,7 +305,7 @@ services:
     user: root
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-      DUMMY: "009"
+      DUMMY: "010"
     depends_on:
       - kafka
     volumes:
