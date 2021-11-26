@@ -81,6 +81,8 @@ services:
     container_name: kafka
     depends_on:
       - zookeeper
+    ports:
+      - 29092:29092
     environment:
       DUMMY: 001
       KAFKA_BROKER_ID: 1
