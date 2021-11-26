@@ -261,25 +261,25 @@ services:
       options: 
         tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
-  #logstash-syslog-kafka:
-  #  image: docker.elastic.co/logstash/logstash:7.15.2
-  #  container_name: logstash-syslog-kafka
-  #  user: root
-  #  environment:
-  #    LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-  #    DUMMY: "013"
-  #  depends_on:
-  #    - kafka
-  #  ports:
-  #    - '5140:5140'
-  #  volumes:
-  #    - ${BASEDIR}/00-configs/logstash-syslog-kafka.yml:/usr/share/logstash/config/logstash.yml:ro
-  #    - ${BASEDIR}/00-configs/pipelines/for-syslog-kafka:/usr/share/logstash/pipeline:ro
-  #    - /var/log:/data
-  #  logging:
-  #    driver: "json-file"
-  #    options: 
-  #      tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+  logstash-syslog-kafka:
+    image: docker.elastic.co/logstash/logstash:7.15.2
+    container_name: logstash-syslog-kafka
+    user: root
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      DUMMY: "013"
+    depends_on:
+      - kafka
+    ports:
+      - '5140:5140'
+    volumes:
+      - ${BASEDIR}/00-configs/logstash-syslog-kafka.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ${BASEDIR}/00-configs/pipelines/for-syslog-kafka:/usr/share/logstash/pipeline:ro
+      - /var/log:/data
+    logging:
+      driver: "json-file"
+      options: 
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
 
   #logstash-suricata-kafka:
   #  image: docker.elastic.co/logstash/logstash:7.15.2
