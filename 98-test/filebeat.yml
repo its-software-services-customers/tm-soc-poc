@@ -1,0 +1,23 @@
+filebeat.inputs:
+
+- type: log
+  # Change to true to enable this input configuration.
+  enabled: true
+  # Paths that should be crawled and fetched. Glob based paths.
+  paths:
+    - test-data/*.log
+
+filebeat.config.modules:
+  # Glob pattern for configuration loading
+  path: ${path.config}/modules.d/*.yml
+  # Set to true to enable config reloading
+  reload.enabled: false
+
+#------------------------------ Kafka Output ------------------------------------
+output.kafka:
+  hosts: ["10.141.98.154:29093"]
+  topic: 'suricata'
+  partition.round_robin:
+    reachable_only: false
+  required_acks: 1
+  max_message_bytes: 1000000
