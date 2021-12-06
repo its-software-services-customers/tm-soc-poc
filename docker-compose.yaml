@@ -234,7 +234,7 @@ services:
       #- /tmp/nifi-config/nifi.properties:/opt/nifi/nifi-current/conf/nifi.properties
       #- /tmp/nifi-config/flow.xml.gz:/opt/nifi/nifi-current/conf/flow.xml.gz
       - /tmp/nifi-output:/tmp/nifi-output
-      - /tmp/nifi-input:/tmp/nifi-input
+      - ${BASEDIR}/98-test/misp.csv:/tmp/nifi-input/misp.csv
       #- ${PATH_CERT}:/kafka/certs:ro
     logging:
       driver: "json-file"

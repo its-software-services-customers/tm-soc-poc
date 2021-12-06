@@ -1,300 +1,22 @@
 {
     "flowContents": {
-        "identifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+        "identifier": "fcbea516-dd73-3359-b113-52951a3427ef",
         "name": "ProcessRawLogs",
         "comments": "",
         "position": {
-            "x": 0.0,
-            "y": 0.0
+            "x": 160.0,
+            "y": 24.0
         },
         "processGroups": [],
         "remoteProcessGroups": [],
         "processors": [
             {
-                "identifier": "d8865a3b-2ac9-391b-bf93-a7bcb3f86e17",
-                "name": "RouteOnAttribute",
-                "comments": "",
-                "position": {
-                    "x": 448.0,
-                    "y": 264.0
-                },
-                "bundle": {
-                    "group": "org.apache.nifi",
-                    "artifact": "nifi-standard-nar",
-                    "version": "1.14.0"
-                },
-                "style": {},
-                "type": "org.apache.nifi.processors.standard.RouteOnAttribute",
-                "properties": {
-                    "Routing Strategy": "Route to Property name",
-                    "zeek": "${kafka.topic:matches('^zeek$')}",
-                    "suricata": "${kafka.topic:matches('^suricata$')}",
-                    "syslog": "${kafka.topic:matches('^syslog$')}"
-                },
-                "propertyDescriptors": {
-                    "Routing Strategy": {
-                        "name": "Routing Strategy",
-                        "displayName": "Routing Strategy",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "zeek": {
-                        "name": "zeek",
-                        "displayName": "zeek",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "suricata": {
-                        "name": "suricata",
-                        "displayName": "suricata",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "syslog": {
-                        "name": "syslog",
-                        "displayName": "syslog",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    }
-                },
-                "schedulingPeriod": "0 sec",
-                "schedulingStrategy": "TIMER_DRIVEN",
-                "executionNode": "ALL",
-                "penaltyDuration": "30 sec",
-                "yieldDuration": "1 sec",
-                "bulletinLevel": "WARN",
-                "runDurationMillis": 0,
-                "concurrentlySchedulableTaskCount": 5,
-                "autoTerminatedRelationships": [],
-                "scheduledState": "ENABLED",
-                "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
-            },
-            {
-                "identifier": "26d8e554-3944-33f9-94c8-81098c6cb893",
-                "name": "AddAttributesFromJsonFields",
-                "comments": "",
-                "position": {
-                    "x": 1152.0,
-                    "y": 648.0
-                },
-                "bundle": {
-                    "group": "org.apache.nifi",
-                    "artifact": "nifi-standard-nar",
-                    "version": "1.14.0"
-                },
-                "style": {},
-                "type": "org.apache.nifi.processors.standard.EvaluateJsonPath",
-                "properties": {
-                    "Destination": "flowfile-attribute",
-                    "product": "$.event.source.product",
-                    "org": "$.org.code",
-                    "vendor": "$.event.source.vendor",
-                    "Return Type": "auto-detect",
-                    "host": "$.host.name",
-                    "Null Value Representation": "empty string",
-                    "technology": "$.event.source.technology",
-                    "message": "$.message",
-                    "device": "$.event.source.device",
-                    "Path Not Found Behavior": "ignore"
-                },
-                "propertyDescriptors": {
-                    "Destination": {
-                        "name": "Destination",
-                        "displayName": "Destination",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "product": {
-                        "name": "product",
-                        "displayName": "product",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "org": {
-                        "name": "org",
-                        "displayName": "org",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "vendor": {
-                        "name": "vendor",
-                        "displayName": "vendor",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Return Type": {
-                        "name": "Return Type",
-                        "displayName": "Return Type",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "host": {
-                        "name": "host",
-                        "displayName": "host",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Null Value Representation": {
-                        "name": "Null Value Representation",
-                        "displayName": "Null Value Representation",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "technology": {
-                        "name": "technology",
-                        "displayName": "technology",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "message": {
-                        "name": "message",
-                        "displayName": "message",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "device": {
-                        "name": "device",
-                        "displayName": "device",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Path Not Found Behavior": {
-                        "name": "Path Not Found Behavior",
-                        "displayName": "Path Not Found Behavior",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    }
-                },
-                "schedulingPeriod": "0 sec",
-                "schedulingStrategy": "TIMER_DRIVEN",
-                "executionNode": "ALL",
-                "penaltyDuration": "30 sec",
-                "yieldDuration": "1 sec",
-                "bulletinLevel": "WARN",
-                "runDurationMillis": 0,
-                "concurrentlySchedulableTaskCount": 10,
-                "autoTerminatedRelationships": [],
-                "scheduledState": "ENABLED",
-                "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
-            },
-            {
-                "identifier": "448baf1f-e5fd-3768-a413-0208c2b4121c",
-                "name": "AddAttributesFromJsonFields",
-                "comments": "",
-                "position": {
-                    "x": 448.0,
-                    "y": 648.0
-                },
-                "bundle": {
-                    "group": "org.apache.nifi",
-                    "artifact": "nifi-standard-nar",
-                    "version": "1.14.0"
-                },
-                "style": {},
-                "type": "org.apache.nifi.processors.standard.EvaluateJsonPath",
-                "properties": {
-                    "Destination": "flowfile-attribute",
-                    "product": "$.event.source.product",
-                    "org": "$.org.code",
-                    "vendor": "$.event.source.vendor",
-                    "Return Type": "auto-detect",
-                    "host": "$.host.name",
-                    "Null Value Representation": "empty string",
-                    "technology": "$.event.source.technology",
-                    "message": "$.message",
-                    "device": "$.event.source.device",
-                    "Path Not Found Behavior": "ignore"
-                },
-                "propertyDescriptors": {
-                    "Destination": {
-                        "name": "Destination",
-                        "displayName": "Destination",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "product": {
-                        "name": "product",
-                        "displayName": "product",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "org": {
-                        "name": "org",
-                        "displayName": "org",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "vendor": {
-                        "name": "vendor",
-                        "displayName": "vendor",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Return Type": {
-                        "name": "Return Type",
-                        "displayName": "Return Type",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "host": {
-                        "name": "host",
-                        "displayName": "host",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Null Value Representation": {
-                        "name": "Null Value Representation",
-                        "displayName": "Null Value Representation",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "technology": {
-                        "name": "technology",
-                        "displayName": "technology",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "message": {
-                        "name": "message",
-                        "displayName": "message",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "device": {
-                        "name": "device",
-                        "displayName": "device",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Path Not Found Behavior": {
-                        "name": "Path Not Found Behavior",
-                        "displayName": "Path Not Found Behavior",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    }
-                },
-                "schedulingPeriod": "0 sec",
-                "schedulingStrategy": "TIMER_DRIVEN",
-                "executionNode": "ALL",
-                "penaltyDuration": "30 sec",
-                "yieldDuration": "1 sec",
-                "bulletinLevel": "WARN",
-                "runDurationMillis": 0,
-                "concurrentlySchedulableTaskCount": 10,
-                "autoTerminatedRelationships": [],
-                "scheduledState": "ENABLED",
-                "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
-            },
-            {
                 "identifier": "639fec38-7267-3ec4-a709-dce1ba5bb569",
                 "name": "AddCommonStaticAttributes",
                 "comments": "",
                 "position": {
-                    "x": 448.0,
-                    "y": 24.0
+                    "x": 440.0,
+                    "y": -496.0
                 },
                 "bundle": {
                     "group": "org.apache.nifi",
@@ -360,7 +82,7 @@
                 "autoTerminatedRelationships": [],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
                 "identifier": "c3dfab3f-a609-3f82-affd-e527e24439e1",
@@ -378,7 +100,7 @@
                 "style": {},
                 "type": "org.apache.nifi.processors.standard.AttributesToJSON",
                 "properties": {
-                    "attributes-to-json-regex": null,
+                    "attributes-to-json-regex": "^alert.*$",
                     "Destination": "flowfile-content",
                     "Null Value": "false",
                     "Attributes List": "@timestamp,job,message",
@@ -427,15 +149,15 @@
                 "autoTerminatedRelationships": [],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
                 "identifier": "4f8b14a5-177a-3f7e-b039-c93774455636",
                 "name": "KafkaConsumeLogTopics",
                 "comments": "",
                 "position": {
-                    "x": 448.0,
-                    "y": -200.0
+                    "x": 440.0,
+                    "y": -744.0
                 },
                 "bundle": {
                     "group": "org.apache.nifi",
@@ -462,7 +184,7 @@
                     "sasl.kerberos.keytab": null,
                     "honor-transactions": "true",
                     "Communications Timeout": "60 secs",
-                    "topic": "^(syslog|suricata|zeek)$",
+                    "topic": "^(syslog|syslog-debug|suricata|zeek)$",
                     "separate-by-key": "false",
                     "message-header-encoding": "UTF-8",
                     "sasl.password": "#{VAR_KAFKA_PASSWORD}",
@@ -633,258 +355,15 @@
                 "autoTerminatedRelationships": [],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
-            },
-            {
-                "identifier": "f1389b0b-5ca7-320e-baa1-4301694c68ea",
-                "name": "AddAttributesFromJsonFields",
-                "comments": "",
-                "position": {
-                    "x": -216.0,
-                    "y": 656.0
-                },
-                "bundle": {
-                    "group": "org.apache.nifi",
-                    "artifact": "nifi-standard-nar",
-                    "version": "1.14.0"
-                },
-                "style": {},
-                "type": "org.apache.nifi.processors.standard.EvaluateJsonPath",
-                "properties": {
-                    "Destination": "flowfile-attribute",
-                    "product": "$.event.source.product",
-                    "org": "$.org.code",
-                    "vendor": "$.event.source.vendor",
-                    "Return Type": "auto-detect",
-                    "host": "$.host.name",
-                    "Null Value Representation": "empty string",
-                    "technology": "$.event.source.technology",
-                    "message": "$.message",
-                    "device": "$.event.source.device",
-                    "Path Not Found Behavior": "ignore"
-                },
-                "propertyDescriptors": {
-                    "Destination": {
-                        "name": "Destination",
-                        "displayName": "Destination",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "product": {
-                        "name": "product",
-                        "displayName": "product",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "org": {
-                        "name": "org",
-                        "displayName": "org",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "vendor": {
-                        "name": "vendor",
-                        "displayName": "vendor",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Return Type": {
-                        "name": "Return Type",
-                        "displayName": "Return Type",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "host": {
-                        "name": "host",
-                        "displayName": "host",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Null Value Representation": {
-                        "name": "Null Value Representation",
-                        "displayName": "Null Value Representation",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "technology": {
-                        "name": "technology",
-                        "displayName": "technology",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "message": {
-                        "name": "message",
-                        "displayName": "message",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "device": {
-                        "name": "device",
-                        "displayName": "device",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Path Not Found Behavior": {
-                        "name": "Path Not Found Behavior",
-                        "displayName": "Path Not Found Behavior",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    }
-                },
-                "schedulingPeriod": "0 sec",
-                "schedulingStrategy": "TIMER_DRIVEN",
-                "executionNode": "ALL",
-                "penaltyDuration": "30 sec",
-                "yieldDuration": "1 sec",
-                "bulletinLevel": "WARN",
-                "runDurationMillis": 0,
-                "concurrentlySchedulableTaskCount": 10,
-                "autoTerminatedRelationships": [],
-                "scheduledState": "ENABLED",
-                "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
-            },
-            {
-                "identifier": "bf71c38c-cc1a-3117-8ac6-cb9f757772a4",
-                "name": "AddJsonFieldsFromAttributes",
-                "comments": "",
-                "position": {
-                    "x": 1152.0,
-                    "y": 944.0
-                },
-                "bundle": {
-                    "group": "org.apache.nifi",
-                    "artifact": "nifi-standard-nar",
-                    "version": "1.14.0"
-                },
-                "style": {},
-                "type": "org.apache.nifi.processors.standard.AttributesToJSON",
-                "properties": {
-                    "attributes-to-json-regex": null,
-                    "Destination": "flowfile-content",
-                    "Null Value": "false",
-                    "Attributes List": "@timestamp,job,message",
-                    "Include Core Attributes": "false"
-                },
-                "propertyDescriptors": {
-                    "attributes-to-json-regex": {
-                        "name": "attributes-to-json-regex",
-                        "displayName": "Attributes Regular Expression",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Destination": {
-                        "name": "Destination",
-                        "displayName": "Destination",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Null Value": {
-                        "name": "Null Value",
-                        "displayName": "Null Value",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Attributes List": {
-                        "name": "Attributes List",
-                        "displayName": "Attributes List",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Include Core Attributes": {
-                        "name": "Include Core Attributes",
-                        "displayName": "Include Core Attributes",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    }
-                },
-                "schedulingPeriod": "0 sec",
-                "schedulingStrategy": "TIMER_DRIVEN",
-                "executionNode": "ALL",
-                "penaltyDuration": "30 sec",
-                "yieldDuration": "1 sec",
-                "bulletinLevel": "WARN",
-                "runDurationMillis": 0,
-                "concurrentlySchedulableTaskCount": 10,
-                "autoTerminatedRelationships": [],
-                "scheduledState": "ENABLED",
-                "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
-            },
-            {
-                "identifier": "0527bf3c-e79c-3b43-801b-c0ba3c370370",
-                "name": "AddJsonFieldsFromAttributes",
-                "comments": "",
-                "position": {
-                    "x": -216.0,
-                    "y": 944.0
-                },
-                "bundle": {
-                    "group": "org.apache.nifi",
-                    "artifact": "nifi-standard-nar",
-                    "version": "1.14.0"
-                },
-                "style": {},
-                "type": "org.apache.nifi.processors.standard.AttributesToJSON",
-                "properties": {
-                    "attributes-to-json-regex": null,
-                    "Destination": "flowfile-content",
-                    "Null Value": "false",
-                    "Attributes List": "@timestamp,host,job,message,org,product,vendor,device,technology",
-                    "Include Core Attributes": "false"
-                },
-                "propertyDescriptors": {
-                    "attributes-to-json-regex": {
-                        "name": "attributes-to-json-regex",
-                        "displayName": "Attributes Regular Expression",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Destination": {
-                        "name": "Destination",
-                        "displayName": "Destination",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Null Value": {
-                        "name": "Null Value",
-                        "displayName": "Null Value",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Attributes List": {
-                        "name": "Attributes List",
-                        "displayName": "Attributes List",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    },
-                    "Include Core Attributes": {
-                        "name": "Include Core Attributes",
-                        "displayName": "Include Core Attributes",
-                        "identifiesControllerService": false,
-                        "sensitive": false
-                    }
-                },
-                "schedulingPeriod": "0 sec",
-                "schedulingStrategy": "TIMER_DRIVEN",
-                "executionNode": "ALL",
-                "penaltyDuration": "30 sec",
-                "yieldDuration": "1 sec",
-                "bulletinLevel": "WARN",
-                "runDurationMillis": 0,
-                "concurrentlySchedulableTaskCount": 10,
-                "autoTerminatedRelationships": [],
-                "scheduledState": "ENABLED",
-                "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
                 "identifier": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                 "name": "KafkaPublishForLoki",
                 "comments": "",
                 "position": {
-                    "x": 440.0,
-                    "y": 1880.0
+                    "x": 448.0,
+                    "y": 1320.0
                 },
                 "bundle": {
                     "group": "org.apache.nifi",
@@ -1105,7 +584,602 @@
                 ],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
+            {
+                "identifier": "0527bf3c-e79c-3b43-801b-c0ba3c370370",
+                "name": "AddJsonFieldsFromAttributes",
+                "comments": "",
+                "position": {
+                    "x": -216.0,
+                    "y": 944.0
+                },
+                "bundle": {
+                    "group": "org.apache.nifi",
+                    "artifact": "nifi-standard-nar",
+                    "version": "1.14.0"
+                },
+                "style": {},
+                "type": "org.apache.nifi.processors.standard.AttributesToJSON",
+                "properties": {
+                    "attributes-to-json-regex": "^alert.*$",
+                    "Destination": "flowfile-content",
+                    "Null Value": "false",
+                    "Attributes List": "@timestamp,host,job,message,org,product,vendor,device,technology",
+                    "Include Core Attributes": "false"
+                },
+                "propertyDescriptors": {
+                    "attributes-to-json-regex": {
+                        "name": "attributes-to-json-regex",
+                        "displayName": "Attributes Regular Expression",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Destination": {
+                        "name": "Destination",
+                        "displayName": "Destination",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Null Value": {
+                        "name": "Null Value",
+                        "displayName": "Null Value",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Attributes List": {
+                        "name": "Attributes List",
+                        "displayName": "Attributes List",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Include Core Attributes": {
+                        "name": "Include Core Attributes",
+                        "displayName": "Include Core Attributes",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    }
+                },
+                "schedulingPeriod": "0 sec",
+                "schedulingStrategy": "TIMER_DRIVEN",
+                "executionNode": "ALL",
+                "penaltyDuration": "30 sec",
+                "yieldDuration": "1 sec",
+                "bulletinLevel": "WARN",
+                "runDurationMillis": 0,
+                "concurrentlySchedulableTaskCount": 10,
+                "autoTerminatedRelationships": [],
+                "scheduledState": "ENABLED",
+                "componentType": "PROCESSOR",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
+            {
+                "identifier": "d8865a3b-2ac9-391b-bf93-a7bcb3f86e17",
+                "name": "RouteOnAttribute",
+                "comments": "",
+                "position": {
+                    "x": 448.0,
+                    "y": 264.0
+                },
+                "bundle": {
+                    "group": "org.apache.nifi",
+                    "artifact": "nifi-standard-nar",
+                    "version": "1.14.0"
+                },
+                "style": {},
+                "type": "org.apache.nifi.processors.standard.RouteOnAttribute",
+                "properties": {
+                    "Routing Strategy": "Route to Property name",
+                    "zeek": "${kafka.topic:matches('^zeek$')}",
+                    "suricata": "${kafka.topic:matches('^suricata$')}",
+                    "syslog": "${kafka.topic:matches('^(syslog|syslog-debug)$')}"
+                },
+                "propertyDescriptors": {
+                    "Routing Strategy": {
+                        "name": "Routing Strategy",
+                        "displayName": "Routing Strategy",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "zeek": {
+                        "name": "zeek",
+                        "displayName": "zeek",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "suricata": {
+                        "name": "suricata",
+                        "displayName": "suricata",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "syslog": {
+                        "name": "syslog",
+                        "displayName": "syslog",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    }
+                },
+                "schedulingPeriod": "0 sec",
+                "schedulingStrategy": "TIMER_DRIVEN",
+                "executionNode": "ALL",
+                "penaltyDuration": "30 sec",
+                "yieldDuration": "1 sec",
+                "bulletinLevel": "WARN",
+                "runDurationMillis": 0,
+                "concurrentlySchedulableTaskCount": 5,
+                "autoTerminatedRelationships": [],
+                "scheduledState": "ENABLED",
+                "componentType": "PROCESSOR",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
+            {
+                "identifier": "26d8e554-3944-33f9-94c8-81098c6cb893",
+                "name": "AddAttributesFromJsonFields",
+                "comments": "",
+                "position": {
+                    "x": 1152.0,
+                    "y": 648.0
+                },
+                "bundle": {
+                    "group": "org.apache.nifi",
+                    "artifact": "nifi-standard-nar",
+                    "version": "1.14.0"
+                },
+                "style": {},
+                "type": "org.apache.nifi.processors.standard.EvaluateJsonPath",
+                "properties": {
+                    "Destination": "flowfile-attribute",
+                    "product": "$.event.source.product",
+                    "org": "$.org.code",
+                    "vendor": "$.event.source.vendor",
+                    "Return Type": "auto-detect",
+                    "host": "$.host.name",
+                    "Null Value Representation": "empty string",
+                    "technology": "$.event.source.technology",
+                    "message": "$.message",
+                    "device": "$.event.source.device",
+                    "Path Not Found Behavior": "ignore"
+                },
+                "propertyDescriptors": {
+                    "Destination": {
+                        "name": "Destination",
+                        "displayName": "Destination",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "product": {
+                        "name": "product",
+                        "displayName": "product",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "org": {
+                        "name": "org",
+                        "displayName": "org",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "vendor": {
+                        "name": "vendor",
+                        "displayName": "vendor",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Return Type": {
+                        "name": "Return Type",
+                        "displayName": "Return Type",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "host": {
+                        "name": "host",
+                        "displayName": "host",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Null Value Representation": {
+                        "name": "Null Value Representation",
+                        "displayName": "Null Value Representation",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "technology": {
+                        "name": "technology",
+                        "displayName": "technology",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "message": {
+                        "name": "message",
+                        "displayName": "message",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "device": {
+                        "name": "device",
+                        "displayName": "device",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Path Not Found Behavior": {
+                        "name": "Path Not Found Behavior",
+                        "displayName": "Path Not Found Behavior",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    }
+                },
+                "schedulingPeriod": "0 sec",
+                "schedulingStrategy": "TIMER_DRIVEN",
+                "executionNode": "ALL",
+                "penaltyDuration": "30 sec",
+                "yieldDuration": "1 sec",
+                "bulletinLevel": "WARN",
+                "runDurationMillis": 0,
+                "concurrentlySchedulableTaskCount": 10,
+                "autoTerminatedRelationships": [],
+                "scheduledState": "ENABLED",
+                "componentType": "PROCESSOR",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
+            {
+                "identifier": "448baf1f-e5fd-3768-a413-0208c2b4121c",
+                "name": "AddAttributesFromJsonFields",
+                "comments": "",
+                "position": {
+                    "x": 448.0,
+                    "y": 648.0
+                },
+                "bundle": {
+                    "group": "org.apache.nifi",
+                    "artifact": "nifi-standard-nar",
+                    "version": "1.14.0"
+                },
+                "style": {},
+                "type": "org.apache.nifi.processors.standard.EvaluateJsonPath",
+                "properties": {
+                    "Destination": "flowfile-attribute",
+                    "product": "$.event.source.product",
+                    "org": "$.org.code",
+                    "vendor": "$.event.source.vendor",
+                    "Return Type": "auto-detect",
+                    "host": "$.host.name",
+                    "Null Value Representation": "empty string",
+                    "technology": "$.event.source.technology",
+                    "message": "$.message",
+                    "device": "$.event.source.device",
+                    "Path Not Found Behavior": "ignore"
+                },
+                "propertyDescriptors": {
+                    "Destination": {
+                        "name": "Destination",
+                        "displayName": "Destination",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "product": {
+                        "name": "product",
+                        "displayName": "product",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "org": {
+                        "name": "org",
+                        "displayName": "org",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "vendor": {
+                        "name": "vendor",
+                        "displayName": "vendor",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Return Type": {
+                        "name": "Return Type",
+                        "displayName": "Return Type",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "host": {
+                        "name": "host",
+                        "displayName": "host",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Null Value Representation": {
+                        "name": "Null Value Representation",
+                        "displayName": "Null Value Representation",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "technology": {
+                        "name": "technology",
+                        "displayName": "technology",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "message": {
+                        "name": "message",
+                        "displayName": "message",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "device": {
+                        "name": "device",
+                        "displayName": "device",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Path Not Found Behavior": {
+                        "name": "Path Not Found Behavior",
+                        "displayName": "Path Not Found Behavior",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    }
+                },
+                "schedulingPeriod": "0 sec",
+                "schedulingStrategy": "TIMER_DRIVEN",
+                "executionNode": "ALL",
+                "penaltyDuration": "30 sec",
+                "yieldDuration": "1 sec",
+                "bulletinLevel": "WARN",
+                "runDurationMillis": 0,
+                "concurrentlySchedulableTaskCount": 10,
+                "autoTerminatedRelationships": [],
+                "scheduledState": "ENABLED",
+                "componentType": "PROCESSOR",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
+            {
+                "identifier": "85cd10c5-decb-3933-a624-4ffbdf66599e",
+                "name": "LookupMisp",
+                "comments": "",
+                "position": {
+                    "x": 440.0,
+                    "y": 8.0
+                },
+                "bundle": {
+                    "group": "org.apache.nifi",
+                    "artifact": "nifi-standard-nar",
+                    "version": "1.14.0"
+                },
+                "style": {},
+                "type": "org.apache.nifi.processors.standard.LookupAttribute",
+                "properties": {
+                    "mispipv4alert": "${misp.ipv4}",
+                    "alertMispIpv4": "${misp.ipv4}",
+                    "mispdomainalert": "${misp.domain}",
+                    "lookup-service": "199d437a-0671-36c9-b7fa-5e347c77a183",
+                    "include-empty-values": "true",
+                    "alertMispDomain": "${misp.domain}"
+                },
+                "propertyDescriptors": {
+                    "mispipv4alert": {
+                        "name": "mispipv4alert",
+                        "displayName": "mispipv4alert",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "alertMispIpv4": {
+                        "name": "alertMispIpv4",
+                        "displayName": "alertMispIpv4",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "mispdomainalert": {
+                        "name": "mispdomainalert",
+                        "displayName": "mispdomainalert",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "lookup-service": {
+                        "name": "lookup-service",
+                        "displayName": "Lookup Service",
+                        "identifiesControllerService": true,
+                        "sensitive": false
+                    },
+                    "include-empty-values": {
+                        "name": "include-empty-values",
+                        "displayName": "Include Empty Values",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "alertMispDomain": {
+                        "name": "alertMispDomain",
+                        "displayName": "alertMispDomain",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    }
+                },
+                "schedulingPeriod": "0 sec",
+                "schedulingStrategy": "TIMER_DRIVEN",
+                "executionNode": "ALL",
+                "penaltyDuration": "30 sec",
+                "yieldDuration": "1 sec",
+                "bulletinLevel": "WARN",
+                "runDurationMillis": 0,
+                "concurrentlySchedulableTaskCount": 1,
+                "autoTerminatedRelationships": [],
+                "scheduledState": "ENABLED",
+                "componentType": "PROCESSOR",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
+            {
+                "identifier": "f1389b0b-5ca7-320e-baa1-4301694c68ea",
+                "name": "AddAttributesFromJsonFields",
+                "comments": "",
+                "position": {
+                    "x": -216.0,
+                    "y": 656.0
+                },
+                "bundle": {
+                    "group": "org.apache.nifi",
+                    "artifact": "nifi-standard-nar",
+                    "version": "1.14.0"
+                },
+                "style": {},
+                "type": "org.apache.nifi.processors.standard.EvaluateJsonPath",
+                "properties": {
+                    "Destination": "flowfile-attribute",
+                    "product": "$.event.source.product",
+                    "org": "$.org.code",
+                    "vendor": "$.event.source.vendor",
+                    "Return Type": "auto-detect",
+                    "host": "$.host.name",
+                    "Null Value Representation": "empty string",
+                    "technology": "$.event.source.technology",
+                    "message": "$.message",
+                    "device": "$.event.source.device",
+                    "Path Not Found Behavior": "ignore"
+                },
+                "propertyDescriptors": {
+                    "Destination": {
+                        "name": "Destination",
+                        "displayName": "Destination",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "product": {
+                        "name": "product",
+                        "displayName": "product",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "org": {
+                        "name": "org",
+                        "displayName": "org",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "vendor": {
+                        "name": "vendor",
+                        "displayName": "vendor",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Return Type": {
+                        "name": "Return Type",
+                        "displayName": "Return Type",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "host": {
+                        "name": "host",
+                        "displayName": "host",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Null Value Representation": {
+                        "name": "Null Value Representation",
+                        "displayName": "Null Value Representation",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "technology": {
+                        "name": "technology",
+                        "displayName": "technology",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "message": {
+                        "name": "message",
+                        "displayName": "message",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "device": {
+                        "name": "device",
+                        "displayName": "device",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Path Not Found Behavior": {
+                        "name": "Path Not Found Behavior",
+                        "displayName": "Path Not Found Behavior",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    }
+                },
+                "schedulingPeriod": "0 sec",
+                "schedulingStrategy": "TIMER_DRIVEN",
+                "executionNode": "ALL",
+                "penaltyDuration": "30 sec",
+                "yieldDuration": "1 sec",
+                "bulletinLevel": "WARN",
+                "runDurationMillis": 0,
+                "concurrentlySchedulableTaskCount": 10,
+                "autoTerminatedRelationships": [],
+                "scheduledState": "ENABLED",
+                "componentType": "PROCESSOR",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
+            {
+                "identifier": "bf71c38c-cc1a-3117-8ac6-cb9f757772a4",
+                "name": "AddJsonFieldsFromAttributes",
+                "comments": "",
+                "position": {
+                    "x": 1152.0,
+                    "y": 944.0
+                },
+                "bundle": {
+                    "group": "org.apache.nifi",
+                    "artifact": "nifi-standard-nar",
+                    "version": "1.14.0"
+                },
+                "style": {},
+                "type": "org.apache.nifi.processors.standard.AttributesToJSON",
+                "properties": {
+                    "attributes-to-json-regex": "^alert.*$",
+                    "Destination": "flowfile-content",
+                    "Null Value": "false",
+                    "Attributes List": "@timestamp,job,message",
+                    "Include Core Attributes": "false"
+                },
+                "propertyDescriptors": {
+                    "attributes-to-json-regex": {
+                        "name": "attributes-to-json-regex",
+                        "displayName": "Attributes Regular Expression",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Destination": {
+                        "name": "Destination",
+                        "displayName": "Destination",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Null Value": {
+                        "name": "Null Value",
+                        "displayName": "Null Value",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Attributes List": {
+                        "name": "Attributes List",
+                        "displayName": "Attributes List",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Include Core Attributes": {
+                        "name": "Include Core Attributes",
+                        "displayName": "Include Core Attributes",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    }
+                },
+                "schedulingPeriod": "0 sec",
+                "schedulingStrategy": "TIMER_DRIVEN",
+                "executionNode": "ALL",
+                "penaltyDuration": "30 sec",
+                "yieldDuration": "1 sec",
+                "bulletinLevel": "WARN",
+                "runDurationMillis": 0,
+                "concurrentlySchedulableTaskCount": 10,
+                "autoTerminatedRelationships": [],
+                "scheduledState": "ENABLED",
+                "componentType": "PROCESSOR",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
                 "identifier": "96ed329c-5c79-3fc5-91b2-30eb25e97266",
@@ -1113,7 +1187,7 @@
                 "comments": "",
                 "position": {
                     "x": 440.0,
-                    "y": 1520.0
+                    "y": -248.0
                 },
                 "bundle": {
                     "group": "org.apache.nifi",
@@ -1263,7 +1337,7 @@
                 "autoTerminatedRelationships": [],
                 "scheduledState": "ENABLED",
                 "componentType": "PROCESSOR",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             }
         ],
         "inputPorts": [],
@@ -1275,14 +1349,14 @@
                 "source": {
                     "id": "4f8b14a5-177a-3f7e-b039-c93774455636",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "KafkaConsumeLogTopics",
                     "comments": ""
                 },
                 "destination": {
                     "id": "639fec38-7267-3ec4-a709-dce1ba5bb569",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "AddCommonStaticAttributes",
                     "comments": ""
                 },
@@ -1300,23 +1374,23 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
-                "identifier": "94bb2948-742a-3473-9dc7-6017b3f99841",
+                "identifier": "9964701d-b907-3fe2-90cf-ef46165acdc9",
                 "name": "",
                 "source": {
-                    "id": "0527bf3c-e79c-3b43-801b-c0ba3c370370",
+                    "id": "bf71c38c-cc1a-3117-8ac6-cb9f757772a4",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "AddJsonFieldsFromAttributes",
                     "comments": ""
                 },
                 "destination": {
-                    "id": "96ed329c-5c79-3fc5-91b2-30eb25e97266",
+                    "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
-                    "name": "ExtractText",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
                 "labelIndex": 1,
@@ -1334,7 +1408,7 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
                 "identifier": "346a9408-1da8-37f5-9111-c5a155351320",
@@ -1342,14 +1416,14 @@
                 "source": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
                 "destination": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
@@ -1364,35 +1438,69 @@
                 "prioritizers": [],
                 "bends": [
                     {
-                        "x": 929.7347831726074,
-                        "y": 1913.4551391601562
+                        "x": 934.3740653991699,
+                        "y": 1357.0448608398438
                     },
                     {
-                        "x": 929.7347831726074,
-                        "y": 1963.4551391601562
+                        "x": 934.3740653991699,
+                        "y": 1407.0448608398438
                     }
                 ],
                 "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
-                "identifier": "ccdc3bab-68e5-3693-86ce-aacc8cfef37f",
+                "identifier": "034841a0-a2fa-3147-9266-96bd1d75eeff",
                 "name": "",
                 "source": {
-                    "id": "96ed329c-5c79-3fc5-91b2-30eb25e97266",
+                    "id": "c3dfab3f-a609-3f82-affd-e527e24439e1",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
-                    "name": "ExtractText",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "AddJsonFieldsFromAttributes",
                     "comments": ""
                 },
                 "destination": {
                     "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "KafkaPublishForLoki",
+                    "comments": ""
+                },
+                "labelIndex": 1,
+                "zIndex": 0,
+                "selectedRelationships": [
+                    "failure",
+                    "success"
+                ],
+                "backPressureObjectThreshold": 10000,
+                "backPressureDataSizeThreshold": "1 GB",
+                "flowFileExpiration": "0 sec",
+                "prioritizers": [],
+                "bends": [],
+                "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+                "partitioningAttribute": "",
+                "loadBalanceCompression": "DO_NOT_COMPRESS",
+                "componentType": "CONNECTION",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
+            {
+                "identifier": "b7521162-99de-363a-8658-224681925bd7",
+                "name": "",
+                "source": {
+                    "id": "96ed329c-5c79-3fc5-91b2-30eb25e97266",
+                    "type": "PROCESSOR",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "ExtractText",
+                    "comments": ""
+                },
+                "destination": {
+                    "id": "85cd10c5-decb-3933-a624-4ffbdf66599e",
+                    "type": "PROCESSOR",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "LookupMisp",
                     "comments": ""
                 },
                 "labelIndex": 1,
@@ -1410,7 +1518,7 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
                 "identifier": "0dedc417-0d1f-36f0-b9ad-fe116e0b1607",
@@ -1418,14 +1526,14 @@
                 "source": {
                     "id": "26d8e554-3944-33f9-94c8-81098c6cb893",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "AddAttributesFromJsonFields",
                     "comments": ""
                 },
                 "destination": {
                     "id": "bf71c38c-cc1a-3117-8ac6-cb9f757772a4",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "AddJsonFieldsFromAttributes",
                     "comments": ""
                 },
@@ -1445,7 +1553,7 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
                 "identifier": "0199df4b-06fe-3550-9b1f-2b88bbb52821",
@@ -1453,14 +1561,14 @@
                 "source": {
                     "id": "d8865a3b-2ac9-391b-bf93-a7bcb3f86e17",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "RouteOnAttribute",
                     "comments": ""
                 },
                 "destination": {
                     "id": "f1389b0b-5ca7-320e-baa1-4301694c68ea",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "AddAttributesFromJsonFields",
                     "comments": ""
                 },
@@ -1478,99 +1586,28 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
-                "identifier": "54f8529a-01a5-3720-b71b-50fd8eee685a",
+                "identifier": "be580f72-5857-3ed8-aec1-3d00bb7c42a5",
                 "name": "",
                 "source": {
-                    "id": "448baf1f-e5fd-3768-a413-0208c2b4121c",
+                    "id": "639fec38-7267-3ec4-a709-dce1ba5bb569",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
-                    "name": "AddAttributesFromJsonFields",
-                    "comments": ""
-                },
-                "destination": {
-                    "id": "c3dfab3f-a609-3f82-affd-e527e24439e1",
-                    "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
-                    "name": "AddJsonFieldsFromAttributes",
-                    "comments": ""
-                },
-                "labelIndex": 1,
-                "zIndex": 0,
-                "selectedRelationships": [
-                    "failure",
-                    "matched",
-                    "unmatched"
-                ],
-                "backPressureObjectThreshold": 10000,
-                "backPressureDataSizeThreshold": "1 GB",
-                "flowFileExpiration": "0 sec",
-                "prioritizers": [],
-                "bends": [],
-                "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
-                "partitioningAttribute": "",
-                "loadBalanceCompression": "DO_NOT_COMPRESS",
-                "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
-            },
-            {
-                "identifier": "d08376ad-751f-34c4-bbe6-8908e29b3060",
-                "name": "",
-                "source": {
-                    "id": "f1389b0b-5ca7-320e-baa1-4301694c68ea",
-                    "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
-                    "name": "AddAttributesFromJsonFields",
-                    "comments": ""
-                },
-                "destination": {
-                    "id": "0527bf3c-e79c-3b43-801b-c0ba3c370370",
-                    "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
-                    "name": "AddJsonFieldsFromAttributes",
-                    "comments": ""
-                },
-                "labelIndex": 1,
-                "zIndex": 0,
-                "selectedRelationships": [
-                    "failure",
-                    "matched",
-                    "unmatched"
-                ],
-                "backPressureObjectThreshold": 10000,
-                "backPressureDataSizeThreshold": "1 GB",
-                "flowFileExpiration": "0 sec",
-                "prioritizers": [],
-                "bends": [],
-                "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
-                "partitioningAttribute": "",
-                "loadBalanceCompression": "DO_NOT_COMPRESS",
-                "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
-            },
-            {
-                "identifier": "0ba52599-02ee-3530-8ce3-459242c998dd",
-                "name": "",
-                "source": {
-                    "id": "c3dfab3f-a609-3f82-affd-e527e24439e1",
-                    "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
-                    "name": "AddJsonFieldsFromAttributes",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "AddCommonStaticAttributes",
                     "comments": ""
                 },
                 "destination": {
                     "id": "96ed329c-5c79-3fc5-91b2-30eb25e97266",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "ExtractText",
                     "comments": ""
                 },
                 "labelIndex": 1,
                 "zIndex": 0,
                 "selectedRelationships": [
-                    "failure",
                     "success"
                 ],
                 "backPressureObjectThreshold": 10000,
@@ -1582,7 +1619,77 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
+            {
+                "identifier": "54f8529a-01a5-3720-b71b-50fd8eee685a",
+                "name": "",
+                "source": {
+                    "id": "448baf1f-e5fd-3768-a413-0208c2b4121c",
+                    "type": "PROCESSOR",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "AddAttributesFromJsonFields",
+                    "comments": ""
+                },
+                "destination": {
+                    "id": "c3dfab3f-a609-3f82-affd-e527e24439e1",
+                    "type": "PROCESSOR",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "AddJsonFieldsFromAttributes",
+                    "comments": ""
+                },
+                "labelIndex": 1,
+                "zIndex": 0,
+                "selectedRelationships": [
+                    "failure",
+                    "matched",
+                    "unmatched"
+                ],
+                "backPressureObjectThreshold": 10000,
+                "backPressureDataSizeThreshold": "1 GB",
+                "flowFileExpiration": "0 sec",
+                "prioritizers": [],
+                "bends": [],
+                "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+                "partitioningAttribute": "",
+                "loadBalanceCompression": "DO_NOT_COMPRESS",
+                "componentType": "CONNECTION",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
+            {
+                "identifier": "d08376ad-751f-34c4-bbe6-8908e29b3060",
+                "name": "",
+                "source": {
+                    "id": "f1389b0b-5ca7-320e-baa1-4301694c68ea",
+                    "type": "PROCESSOR",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "AddAttributesFromJsonFields",
+                    "comments": ""
+                },
+                "destination": {
+                    "id": "0527bf3c-e79c-3b43-801b-c0ba3c370370",
+                    "type": "PROCESSOR",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "AddJsonFieldsFromAttributes",
+                    "comments": ""
+                },
+                "labelIndex": 1,
+                "zIndex": 0,
+                "selectedRelationships": [
+                    "failure",
+                    "matched",
+                    "unmatched"
+                ],
+                "backPressureObjectThreshold": 10000,
+                "backPressureDataSizeThreshold": "1 GB",
+                "flowFileExpiration": "0 sec",
+                "prioritizers": [],
+                "bends": [],
+                "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
+                "partitioningAttribute": "",
+                "loadBalanceCompression": "DO_NOT_COMPRESS",
+                "componentType": "CONNECTION",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
                 "identifier": "e524731d-0a24-3b0e-b409-f6ca781e15d2",
@@ -1590,14 +1697,14 @@
                 "source": {
                     "id": "d8865a3b-2ac9-391b-bf93-a7bcb3f86e17",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "RouteOnAttribute",
                     "comments": ""
                 },
                 "destination": {
                     "id": "26d8e554-3944-33f9-94c8-81098c6cb893",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "AddAttributesFromJsonFields",
                     "comments": ""
                 },
@@ -1616,23 +1723,23 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
-                "identifier": "d0eea1f7-abb9-3803-be9e-38c63383a8df",
+                "identifier": "a306101c-d149-3f46-92cd-504867bc5880",
                 "name": "",
                 "source": {
-                    "id": "bf71c38c-cc1a-3117-8ac6-cb9f757772a4",
+                    "id": "0527bf3c-e79c-3b43-801b-c0ba3c370370",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "AddJsonFieldsFromAttributes",
                     "comments": ""
                 },
                 "destination": {
-                    "id": "96ed329c-5c79-3fc5-91b2-30eb25e97266",
+                    "id": "12b1e2fe-290b-3284-9e4a-24591e3e466d",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
-                    "name": "ExtractText",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "KafkaPublishForLoki",
                     "comments": ""
                 },
                 "labelIndex": 1,
@@ -1650,7 +1757,7 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
                 "identifier": "05ab83ff-cc90-3841-a867-3a296db2804f",
@@ -1658,14 +1765,14 @@
                 "source": {
                     "id": "d8865a3b-2ac9-391b-bf93-a7bcb3f86e17",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "RouteOnAttribute",
                     "comments": ""
                 },
                 "destination": {
                     "id": "448baf1f-e5fd-3768-a413-0208c2b4121c",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "AddAttributesFromJsonFields",
                     "comments": ""
                 },
@@ -1683,29 +1790,31 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
-                "identifier": "c7b6660a-e1e2-3479-ba43-55397ffe379d",
+                "identifier": "25eedbd7-6d1c-3f29-8b25-600ea68f44a5",
                 "name": "",
                 "source": {
-                    "id": "639fec38-7267-3ec4-a709-dce1ba5bb569",
+                    "id": "85cd10c5-decb-3933-a624-4ffbdf66599e",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
-                    "name": "AddCommonStaticAttributes",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
+                    "name": "LookupMisp",
                     "comments": ""
                 },
                 "destination": {
                     "id": "d8865a3b-2ac9-391b-bf93-a7bcb3f86e17",
                     "type": "PROCESSOR",
-                    "groupId": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2",
+                    "groupId": "fcbea516-dd73-3359-b113-52951a3427ef",
                     "name": "RouteOnAttribute",
                     "comments": ""
                 },
                 "labelIndex": 1,
                 "zIndex": 0,
                 "selectedRelationships": [
-                    "success"
+                    "failure",
+                    "matched",
+                    "unmatched"
                 ],
                 "backPressureObjectThreshold": 10000,
                 "backPressureDataSizeThreshold": "1 GB",
@@ -1716,12 +1825,137 @@
                 "partitioningAttribute": "",
                 "loadBalanceCompression": "DO_NOT_COMPRESS",
                 "componentType": "CONNECTION",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             }
         ],
         "labels": [],
         "funnels": [],
         "controllerServices": [
+            {
+                "identifier": "199d437a-0671-36c9-b7fa-5e347c77a183",
+                "name": "SimpleCsvFileLookupService",
+                "comments": "",
+                "type": "org.apache.nifi.lookup.SimpleCsvFileLookupService",
+                "bundle": {
+                    "group": "org.apache.nifi",
+                    "artifact": "nifi-lookup-services-nar",
+                    "version": "1.14.0"
+                },
+                "controllerServiceApis": [
+                    {
+                        "type": "org.apache.nifi.lookup.LookupService",
+                        "bundle": {
+                            "group": "org.apache.nifi",
+                            "artifact": "nifi-standard-services-api-nar",
+                            "version": "1.14.0"
+                        }
+                    },
+                    {
+                        "type": "org.apache.nifi.lookup.StringLookupService",
+                        "bundle": {
+                            "group": "org.apache.nifi",
+                            "artifact": "nifi-standard-services-api-nar",
+                            "version": "1.14.0"
+                        }
+                    }
+                ],
+                "properties": {
+                    "Escape Character": "\\",
+                    "lookup-key-column": "key",
+                    "csv-file": "/tmp/nifi-input/misp.csv",
+                    "Trim Fields": "true",
+                    "lookup-value-column": "found",
+                    "CSV Format": "default",
+                    "ignore-duplicates": "true",
+                    "Quote Character": "\"",
+                    "Comment Marker": null,
+                    "Value Separator": ",",
+                    "Character Set": "UTF-8",
+                    "Quote Mode": "MINIMAL"
+                },
+                "propertyDescriptors": {
+                    "Escape Character": {
+                        "name": "Escape Character",
+                        "displayName": "Escape Character",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "lookup-key-column": {
+                        "name": "lookup-key-column",
+                        "displayName": "Lookup Key Column",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "csv-file": {
+                        "name": "csv-file",
+                        "displayName": "CSV File",
+                        "identifiesControllerService": false,
+                        "sensitive": false,
+                        "resourceDefinition": {
+                            "cardinality": "SINGLE",
+                            "resourceTypes": [
+                                "FILE"
+                            ]
+                        }
+                    },
+                    "Trim Fields": {
+                        "name": "Trim Fields",
+                        "displayName": "Trim Fields",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "lookup-value-column": {
+                        "name": "lookup-value-column",
+                        "displayName": "Lookup Value Column",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "CSV Format": {
+                        "name": "CSV Format",
+                        "displayName": "CSV Format",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "ignore-duplicates": {
+                        "name": "ignore-duplicates",
+                        "displayName": "Ignore Duplicates",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Quote Character": {
+                        "name": "Quote Character",
+                        "displayName": "Quote Character",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Comment Marker": {
+                        "name": "Comment Marker",
+                        "displayName": "Comment Marker",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Value Separator": {
+                        "name": "Value Separator",
+                        "displayName": "Value Separator",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Character Set": {
+                        "name": "Character Set",
+                        "displayName": "Character Set",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    },
+                    "Quote Mode": {
+                        "name": "Quote Mode",
+                        "displayName": "Quote Mode",
+                        "identifiesControllerService": false,
+                        "sensitive": false
+                    }
+                },
+                "componentType": "CONTROLLER_SERVICE",
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
+            },
             {
                 "identifier": "b92e41de-fa76-3296-b453-52d2a7ba090f",
                 "name": "JsonTreeReader",
@@ -1816,7 +2050,7 @@
                     }
                 },
                 "componentType": "CONTROLLER_SERVICE",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             },
             {
                 "identifier": "9de2fea4-dc8e-340e-adcb-31a31bdb0285",
@@ -1961,7 +2195,7 @@
                     }
                 },
                 "componentType": "CONTROLLER_SERVICE",
-                "groupIdentifier": "f3daf210-24b7-3b81-bcfc-527bdb5b48b2"
+                "groupIdentifier": "fcbea516-dd73-3359-b113-52951a3427ef"
             }
         ],
         "variables": {},

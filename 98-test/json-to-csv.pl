@@ -7,7 +7,7 @@ no warnings 'utf8';
 
 my $templateDir = "."; #"98-test";
 
-print("#key,found,type\n");
+print("key,found,type\n");
 
 my $ipAttrPtr = get_attributes(read_file_content("$templateDir/misp-ip.json"));
 print_lines($ipAttrPtr);
