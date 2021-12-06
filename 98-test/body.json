@@ -1,0 +1,7 @@
+{
+    "returnFormat": "json",
+    "limit": 28000,
+    "threat_level_id": [1],
+    "category": "Network activity",
+    "type": ["url"]
+}
