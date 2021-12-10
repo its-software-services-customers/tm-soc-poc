@@ -22,8 +22,7 @@
     "fiscalYearStartMonth": 0,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 5,
-    "iteration": 1639122907494,
+    "iteration": 1639125146757,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -197,7 +196,7 @@
           {
             "expr": "sum by (alertMispIpv4Rule) (count_over_time({job=\"$Job\", alertMispIpv4=\"1\", alertMispIpv4Rule=\"$Rule\"}[$__interval]))",
             "instant": false,
-            "legendFormat": "{{ alertMispIpv4Rule }}",
+            "legendFormat": "Count",
             "range": true,
             "refId": "A"
           }
@@ -209,7 +208,7 @@
             "options": {
               "alias": "Count",
               "binary": {
-                "left": "CyberTotal - IP Daily Blacklist - 2021-11-15",
+                "left": "Count",
                 "operator": "+",
                 "reducer": "sum",
                 "right": "0"
@@ -234,7 +233,7 @@
         {
           "allValue": null,
           "current": {
-            "selected": false,
+            "selected": true,
             "text": "syslog-debug",
             "value": "syslog-debug"
           },
@@ -260,10 +259,14 @@
           "current": {
             "selected": true,
             "text": [
-              "All"
+              "CyberTotal - IP Daily Blacklist - 2021-11-15",
+              "OSINT -  More than a Dozen Obfuscated APT33 Botnets Used for Extreme Narrow Targeting",
+              "OSINT - Iranian PupyRAT Bites Middle Eastern Organizations"
             ],
             "value": [
-              "$__all"
+              "CyberTotal - IP Daily Blacklist - 2021-11-15",
+              "OSINT -  More than a Dozen Obfuscated APT33 Botnets Used for Extreme Narrow Targeting",
+              "OSINT - Iranian PupyRAT Bites Middle Eastern Organizations"
             ]
           },
           "datasource": null,
@@ -293,5 +296,5 @@
     "timezone": "",
     "title": "IPV4 Blacklist",
     "uid": "5gDpvBh7z",
-    "version": 38
+    "version": 1
   }
