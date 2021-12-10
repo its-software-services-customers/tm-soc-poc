@@ -22,7 +22,8 @@
     "fiscalYearStartMonth": 0,
     "gnetId": null,
     "graphTooltip": 0,
-    "iteration": 1639126886578,
+    "id": 6,
+    "iteration": 1639126798072,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -43,6 +44,7 @@
       },
       {
         "datasource": null,
+        "description": "",
         "fieldConfig": {
           "defaults": {
             "color": {
@@ -99,12 +101,12 @@
         "pluginVersion": "8.2.2",
         "targets": [
           {
-            "expr": "sum by (alertMispIpv4Rule) (count_over_time({job=\"$Job\", alertMispIpv4=\"1\", alertMispIpv4Rule=\"$Rule\"}[$__interval]))",
-            "legendFormat": "{{ alertMispIpv4Rule }}",
+            "expr": "sum by (alertMispDomainRule) (count_over_time({job=\"$Job\", alertMispDomain=\"1\", alertMispDomainRule=\"$Rule\"}[$__interval]))",
+            "legendFormat": "{{ alertMispDomainRule }}",
             "refId": "A"
           }
         ],
-        "title": "IPV4 Blacklist Count",
+        "title": "Domain Blacklist Count",
         "type": "stat"
       },
       {
@@ -194,14 +196,14 @@
         "repeat": null,
         "targets": [
           {
-            "expr": "sum by (alertMispIpv4Rule) (count_over_time({job=\"$Job\", alertMispIpv4=\"1\", alertMispIpv4Rule=\"$Rule\"}[$__interval]))",
+            "expr": "sum by (alertMispDomainRule) (count_over_time({job=\"$Job\", alertMispDomain=\"1\", alertMispDomainRule=\"$Rule\"}[$__interval]))",
             "instant": false,
             "legendFormat": "Count",
             "range": true,
             "refId": "A"
           }
         ],
-        "title": "IPV4 Blacklist Count",
+        "title": "Domain Blacklist Count",
         "transformations": [
           {
             "id": "calculateField",
@@ -238,7 +240,7 @@
             "value": "syslog-debug"
           },
           "datasource": null,
-          "definition": "label_values({alertMispIpv4=\"1\"}, job)",
+          "definition": "label_values({alertMispDomain=\"1\"}, job)",
           "description": null,
           "error": null,
           "hide": 0,
@@ -247,7 +249,7 @@
           "multi": false,
           "name": "Job",
           "options": [],
-          "query": "label_values({alertMispIpv4=\"1\"}, job)",
+          "query": "label_values({alertMispDomain=\"1\"}, job)",
           "refresh": 2,
           "regex": "",
           "skipUrlSync": false,
@@ -259,18 +261,14 @@
           "current": {
             "selected": true,
             "text": [
-              "CyberTotal - IP Daily Blacklist - 2021-11-15",
-              "OSINT -  More than a Dozen Obfuscated APT33 Botnets Used for Extreme Narrow Targeting",
-              "OSINT - Iranian PupyRAT Bites Middle Eastern Organizations"
+              "All"
             ],
             "value": [
-              "CyberTotal - IP Daily Blacklist - 2021-11-15",
-              "OSINT -  More than a Dozen Obfuscated APT33 Botnets Used for Extreme Narrow Targeting",
-              "OSINT - Iranian PupyRAT Bites Middle Eastern Organizations"
+              "$__all"
             ]
           },
           "datasource": null,
-          "definition": "label_values({alertMispIpv4=\"1\"},  alertMispIpv4Rule)",
+          "definition": "label_values({alertMispDomain=\"1\"},  alertMispDomainRule)",
           "description": null,
           "error": null,
           "hide": 1,
@@ -279,7 +277,7 @@
           "multi": true,
           "name": "Rule",
           "options": [],
-          "query": "label_values({alertMispIpv4=\"1\"},  alertMispIpv4Rule)",
+          "query": "label_values({alertMispDomain=\"1\"},  alertMispDomainRule)",
           "refresh": 2,
           "regex": "",
           "skipUrlSync": false,
@@ -294,7 +292,7 @@
     },
     "timepicker": {},
     "timezone": "",
-    "title": "IPV4 Blacklist",
-    "uid": "5gDpvBh7z",
-    "version": 1
+    "title": "Domain Blacklist",
+    "uid": "5gDpvBh7a",
+    "version": 8
   }
