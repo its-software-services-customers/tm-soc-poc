@@ -216,6 +216,8 @@ services:
     environment:
       NIFI_WEB_HTTP_PORT: 8080
       NIFI_SENSITIVE_PROPS_KEY: 6RfP0DqmDtwsfr343dsgcRIm4HPHOQ4q #DO NOT REMOVE OR CHANGE THIS!!!
+      NIFI_JVM_HEAP_INIT: 8g
+      NIFI_JVM_HEAP_MAX: 8g
       DUMMY: "001"
     ports:
       - "${HOST_ALLOW}8080:8080" # On production must not expose this port, also need some kinds of authentication
